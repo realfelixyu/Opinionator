@@ -1,0 +1,6 @@
+framework module Pods_Opinionator {
+  umbrella header "Pods-Opinionator-umbrella.h"
+
+  export *
+  module * { export * }
+}
