@@ -84,7 +84,6 @@
 			children = (
 				E95C5ECA24F0EF50004D62FB /* Opinionator */,
 				E95C5EC924F0EF50004D62FB /* Products */,
-				E95C5EED24F1C468004D62FB /* QuizModel.swift */,
 				2E6782F6FBC3A3C2BCB1F85E /* Pods */,
 				0F9606E01BA0C0A7ADF630F4 /* Frameworks */,
 			);
@@ -122,6 +121,7 @@
 				E908C42224FCADA900A43151 /* QuestionAnswerController.swift */,
 				E908C42424FCEFDF00A43151 /* ConfigBucketController.swift */,
 				E95C5EEB24F1C45A004D62FB /* QuizCreationManager.swift */,
+				E95C5EED24F1C468004D62FB /* QuizModel.swift */,
 				E95C5EF224F1C98B004D62FB /* QuestionModel.swift */,
 			);
 			path = QuizCreation;

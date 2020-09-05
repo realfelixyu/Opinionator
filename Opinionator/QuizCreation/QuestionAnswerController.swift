@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class QuestionAnswerController: UIViewController {
+class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     var questionNumLabel = UILabel()
     var answerSectionLabel = UILabel()
     var questionField = UITextView()
@@ -19,6 +19,7 @@ class QuestionAnswerController: UIViewController {
     var nextButton = UIButton()
     var footorStack = UIStackView()
     var stackView = UIStackView()
+    var currQuestionIndex = 0;
     
     var quizManager: QuizCreationManager
     
@@ -71,12 +72,13 @@ class QuestionAnswerController: UIViewController {
     }
     
     func loadHeader() {
-        questionNumLabel.text = "Question \(quizManager.currQuestionIndex + 1):"
+        questionNumLabel.text = "Question \(currQuestionIndex + 1):"
         questionField.backgroundColor = .gray
         questionField.text = "test"
         questionField.font = UIFont.systemFont(ofSize: 20)
         questionField.layer.cornerRadius = 5
         questionField.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
         answerSectionLabel.text = "Answers"
         answerSectionLabel.font = UIFont.systemFont(ofSize: 20)
         
@@ -114,6 +116,8 @@ class QuestionAnswerController: UIViewController {
             textfield.backgroundColor = .white
             textfield.text = "test"
             textfield.borderStyle = UITextField.BorderStyle.roundedRect
+            textfield.delegate = self
+            textfield.tag = counter
             stackView.addArrangedSubview(textfield)
             
             createButton(num: counter)
@@ -171,8 +175,19 @@ class QuestionAnswerController: UIViewController {
         stackView.addArrangedSubview(footorStack)
     }
     
-    @objc func tappedBucketButton() {
-        
+    @objc func tappedBucketButton(_ sender: UIButton) {
+        let configBucketVC = ConfigBucketController(quizManager: quizManager, answerIndex: sender.tag)
+        navigationController?.pushViewController(configBucketVC, animated: true)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let text = textView.text ?? ""
+        quizManager.saveQuestionText(questionIndex: currQuestionIndex, questionText: text)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        quizManager.saveAnswer(questionIndex: currQuestionIndex, answerIndex: textField.tag, answerText: text)
     }
     
     @objc func tappedPrevButton() {
@@ -182,4 +197,5 @@ class QuestionAnswerController: UIViewController {
     @objc func tappedNextButton() {
         
     }
+    
 }

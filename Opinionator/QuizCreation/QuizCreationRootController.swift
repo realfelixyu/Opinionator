@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MaterialComponents.MaterialTextFields
 
-class QuizCreationRootController: UIViewController {
+class QuizCreationRootController: UIViewController, UITextFieldDelegate {
     var quizName = UITextField()
     var continueButton = UIButton()
     var quizManager = QuizCreationManager()
@@ -25,6 +25,7 @@ class QuizCreationRootController: UIViewController {
     func loadQuestionTextField() {
         quizName.placeholder = "Type Quiz Name"
         quizName.borderStyle = UITextField.BorderStyle.bezel
+        quizName.delegate = self
         view.addSubview(quizName)
         quizName.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -51,5 +52,9 @@ class QuizCreationRootController: UIViewController {
     @objc func tappedContinueButton(sender: UIButton!) {
         let bucketVC = BucketSelectionController(quizManager: quizManager)
         navigationController?.pushViewController(bucketVC, animated: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        quizManager.saveName(name: textField.text!)
     }
 }

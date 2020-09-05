@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuizModel {
+struct QuizModel {
     
     var quizName: String?
     var questions = [QuestionModel]()

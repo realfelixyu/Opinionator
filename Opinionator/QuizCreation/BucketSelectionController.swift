@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BucketSelectionController: UIViewController {
+class BucketSelectionController: UIViewController, UITextFieldDelegate {
     var continueButton = UIButton()
     var addButton = UIButton()
     var removeButton = UIButton()
@@ -110,6 +110,8 @@ class BucketSelectionController: UIViewController {
     }
     
     @objc func tappedContinueButton(sender: UIButton!) {
+        let bucketsArray = stackView.arrangedSubviews.compactMap { ($0 as? UITextField)?.text }
+        quizManager.saveBuckets(buckets: bucketsArray)
         let questionAnswerVC = QuestionAnswerController(quizManager: quizManager)
         navigationController?.pushViewController(questionAnswerVC, animated: true)
     }
@@ -128,6 +130,8 @@ class BucketSelectionController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
+    
+    
 }
 
 //extension BucketSelectionController: UITableViewDataSource, UITableViewDelegate {
