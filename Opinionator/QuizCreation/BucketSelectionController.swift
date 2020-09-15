@@ -16,7 +16,7 @@ class BucketSelectionController: UIViewController, UITextFieldDelegate {
     var scrollView = UIScrollView()
     var stackView = UIStackView()
     var textFields = [UITextField(), UITextField()]
-    var lastTextFieldIndex = 1;
+    var lastTextFieldIndex = 2;
     //var textFieldArray = Array(repeating: UITextField(), count: 2)
     let cellId = "cellId"
     

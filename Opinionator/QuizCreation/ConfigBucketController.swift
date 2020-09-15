@@ -12,12 +12,15 @@ import UIKit
 class ConfigBucketController: UIViewController {
     var scrollView = UIScrollView()
     var stackView = UIStackView()
+    var sliders = [UISlider]()
     var quizManager: QuizCreationManager
-    var answerIndex: Int;
+    var answerIndex: Int
+    var questionIndex: Int
     
-    init(quizManager: QuizCreationManager, answerIndex: Int) {
+    init(quizManager: QuizCreationManager, answerIndex: Int, questionIndex: Int) {
         self.quizManager = quizManager
         self.answerIndex = answerIndex
+        self.questionIndex = questionIndex
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,6 +32,15 @@ class ConfigBucketController: UIViewController {
         super.viewDidLoad()
         loadScrollView()
         loadStackView()
+        loadBucketSection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        if self.isMovingFromParent {
+            let points = sliders.map { $0.value }
+            quizManager.saveBucketPoints(questionIndex: questionIndex, answerIndex: answerIndex, points: points)
+        }
     }
     
     func loadScrollView() {
@@ -62,6 +74,24 @@ class ConfigBucketController: UIViewController {
     }
     
     func loadBucketSection() {
+        let bucketList = quizManager.getBuckets()
+        let points = quizManager.getBucketPoints(questionIndex: questionIndex, answerIndex: answerIndex)
+        for i in 0..<bucketList.count {
+            let label = UILabel()
+            label.text = bucketList[i]
+            let slider = UISlider()
+            sliders.append(slider)
+            //slider.addTarget(self, action: #selector(sliderMoved), for: .allEditingEvents)
+            slider.tag = i
+            slider.maximumValue = 100.0
+            slider.minimumValue = -100.0
+            slider.value = points[i]
+            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(slider)
+        }
+    }
+    
+    @objc func sliderMoved(_ sender: UISlider) {
 
     }
 }

@@ -9,5 +9,6 @@ target 'Opinionator' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'MaterialComponents/TextFields'
+  pod 'Firebase/Analytics'
 
 end

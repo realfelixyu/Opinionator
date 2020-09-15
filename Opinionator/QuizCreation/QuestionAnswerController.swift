@@ -8,17 +8,20 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
-    var questionNumLabel = UILabel()
+    var questionSectionLabel = UILabel()
     var answerSectionLabel = UILabel()
     var questionField = UITextView()
-    var answerFields = [UITextField(), UITextField(),UITextField(),UITextField()]
+    var answerFields = [UITextField(), UITextField(), UITextField(), UITextField()]
+        //Array(repeating: UITextField(), count: 4)
     var scrollView = UIScrollView()
     var prevButton = UIButton()
     var nextButton = UIButton()
     var footorStack = UIStackView()
     var stackView = UIStackView()
+    var finishCreationButton = UIButton()
     var currQuestionIndex = 0;
     
     var quizManager: QuizCreationManager
@@ -34,9 +37,11 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        quizManager.newQuestion()
         loadScrollView()
         loadStackView()
         loadFooterButtons()
+        loadFinishCreationButton()
     }
     
     func loadScrollView() {
@@ -49,7 +54,7 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
             make.left.equalToSuperview()
             make.right.equalToSuperview()
         }
-        navigationItem.title = "Write Question"
+        navigationItem.title = "Write Question \(currQuestionIndex + 1)"
     }
     
     func loadStackView() {
@@ -72,7 +77,7 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     func loadHeader() {
-        questionNumLabel.text = "Question \(currQuestionIndex + 1):"
+        questionSectionLabel.text = "Question Text:"
         questionField.backgroundColor = .gray
         questionField.text = "test"
         questionField.font = UIFont.systemFont(ofSize: 20)
@@ -82,11 +87,11 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
         answerSectionLabel.text = "Answers"
         answerSectionLabel.font = UIFont.systemFont(ofSize: 20)
         
-        stackView.addArrangedSubview(questionNumLabel)
+        stackView.addArrangedSubview(questionSectionLabel)
         stackView.addArrangedSubview(questionField)
         stackView.addArrangedSubview(answerSectionLabel)
 
-        questionNumLabel.snp.makeConstraints { (make) in
+        questionSectionLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(view)
             make.width.equalTo(LayoutHelper.relativeWidth(percentOfScreen: 80))
             make.height.equalTo(LayoutHelper.relativeHeight(percentOfScreen: 8))
@@ -120,7 +125,7 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
             textfield.tag = counter
             stackView.addArrangedSubview(textfield)
             
-            createButton(num: counter)
+            createConfigBucketButton(num: counter)
             counter += 1
 //            stackView.setCustomSpacing(st, after: <#T##UIView#>)
             textfield.snp.makeConstraints { (make) in
@@ -132,7 +137,27 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
         }
     }
     
-    func createButton(num: Int) {
+    func reloadScreen() {
+        if (currQuestionIndex > 0) {
+            prevButton.isEnabled = true
+            prevButton.alpha = 1.0
+        } else if (currQuestionIndex == 0) {
+            prevButton.isEnabled = false
+            prevButton.alpha = 0.1
+        }
+        navigationItem.title = "Write Question \(currQuestionIndex + 1)"
+        reloadFields()
+    }
+    
+    func reloadFields() {
+        let answers = quizManager.getAnswers(questionIndex: currQuestionIndex)
+        for i in 0..<answers.count {
+            answerFields[i].text = answers[i]
+        }
+        questionField.text = quizManager.getQuestionText(questionIndex: currQuestionIndex)
+    }
+    
+    func createConfigBucketButton(num: Int) {
         let button = UIButton()
         button.setTitle("Configure Buckets", for: .normal)
         button.tag = num
@@ -149,11 +174,23 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
         }
     }
     
+    func saveQuestionAndAnswerFields() {
+        let questionText = questionField.text ?? ""
+        quizManager.saveQuestionText(questionIndex: currQuestionIndex, questionText: questionText)
+        
+        for textField in answerFields {
+            let answerText = textField.text ?? ""
+            quizManager.saveAnswer(questionIndex: currQuestionIndex, answerIndex: textField.tag, answerText: answerText)
+        }
+    }
+    
     func loadFooterButtons() {
         prevButton.setTitle("Previous", for: .normal)
+        prevButton.isEnabled = currQuestionIndex > 0
+        prevButton.alpha = 0.1
         nextButton.setTitle("Next", for: .normal)
         prevButton.backgroundColor = .systemIndigo
-        nextButton.backgroundColor = .systemGreen
+        nextButton.backgroundColor = .systemTeal
         prevButton.layer.cornerRadius = 10
         nextButton.layer.cornerRadius = 10
         prevButton.addTarget(self, action: #selector(tappedPrevButton), for: .touchUpInside)
@@ -175,8 +212,19 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
         stackView.addArrangedSubview(footorStack)
     }
     
+    func loadFinishCreationButton() {
+        finishCreationButton.setTitle("Continue", for: . normal)
+        finishCreationButton.backgroundColor = .systemGreen
+        finishCreationButton.layer.cornerRadius = 10
+        finishCreationButton.addTarget(self, action: #selector(tappedFinishCreationButton), for: .touchUpInside)
+        finishCreationButton.snp.makeConstraints { (make) in
+            make.height.equalTo(LayoutHelper.pixelRelativeToScreen(toHeight: 50))
+        }
+        stackView.addArrangedSubview(finishCreationButton)
+    }
+    
     @objc func tappedBucketButton(_ sender: UIButton) {
-        let configBucketVC = ConfigBucketController(quizManager: quizManager, answerIndex: sender.tag)
+        let configBucketVC = ConfigBucketController(quizManager: quizManager, answerIndex: sender.tag, questionIndex: currQuestionIndex)
         navigationController?.pushViewController(configBucketVC, animated: true)
     }
     
@@ -191,11 +239,25 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     @objc func tappedPrevButton() {
-        
+        if (currQuestionIndex > 100) {
+            return
+        }
+        currQuestionIndex -= 1
+        reloadScreen()
     }
     
     @objc func tappedNextButton() {
-        
+        if (currQuestionIndex > 100) {
+            return
+        }
+        saveQuestionAndAnswerFields()
+        currQuestionIndex += 1
+        quizManager.newQuestion()
+        reloadScreen()
+    }
+    
+    @objc func tappedFinishCreationButton() {
+        //let db = Firebase.f
     }
     
 }

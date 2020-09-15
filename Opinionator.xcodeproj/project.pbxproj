@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A14878A5C098AE3EC84541C8 /* Pods_Opinionator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3133852CDA9FF2DB13C006 /* Pods_Opinionator.framework */; };
+		E90626DD2504649F00DDA4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */; };
 		E908C42324FCADA900A43151 /* QuestionAnswerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908C42224FCADA900A43151 /* QuestionAnswerController.swift */; };
 		E908C42524FCEFDF00A43151 /* ConfigBucketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908C42424FCEFDF00A43151 /* ConfigBucketController.swift */; };
+		E93BBAD0250F620E00CCFD53 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */; };
+		E93BBAD6250F631400CCFD53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBAD5250F631400CCFD53 /* LoginViewController.swift */; };
+		E93BBAD8250F632300CCFD53 /* SignUpOrLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */; };
 		E95C5ECC24F0EF50004D62FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5ECB24F0EF50004D62FB /* AppDelegate.swift */; };
 		E95C5ECE24F0EF50004D62FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5ECD24F0EF50004D62FB /* SceneDelegate.swift */; };
 		E95C5ED024F0EF50004D62FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5ECF24F0EF50004D62FB /* ViewController.swift */; };
@@ -30,8 +34,12 @@
 		0E3133852CDA9FF2DB13C006 /* Pods_Opinionator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Opinionator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2DCCC1976B059E9995826B /* Pods-Opinionator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Opinionator.debug.xcconfig"; path = "Target Support Files/Pods-Opinionator/Pods-Opinionator.debug.xcconfig"; sourceTree = "<group>"; };
 		D0FFB856A8845641628C0C3C /* Pods-Opinionator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Opinionator.release.xcconfig"; path = "Target Support Files/Pods-Opinionator/Pods-Opinionator.release.xcconfig"; sourceTree = "<group>"; };
+		E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E908C42224FCADA900A43151 /* QuestionAnswerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerController.swift; sourceTree = "<group>"; };
 		E908C42424FCEFDF00A43151 /* ConfigBucketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigBucketController.swift; sourceTree = "<group>"; };
+		E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E93BBAD5250F631400CCFD53 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOrLoginViewController.swift; sourceTree = "<group>"; };
 		E95C5EC824F0EF50004D62FB /* Opinionator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Opinionator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95C5ECB24F0EF50004D62FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E95C5ECD24F0EF50004D62FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +87,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E93BBACE250F61E100CCFD53 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */,
+				E93BBAD5250F631400CCFD53 /* LoginViewController.swift */,
+				E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		E95C5EBF24F0EF50004D62FB = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +118,7 @@
 		E95C5ECA24F0EF50004D62FB /* Opinionator */ = {
 			isa = PBXGroup;
 			children = (
+				E93BBACE250F61E100CCFD53 /* Authentication */,
 				E95C5EEF24F1C7C5004D62FB /* Utility */,
 				E95C5EE724F1C407004D62FB /* QuizCreation */,
 				E95C5ECB24F0EF50004D62FB /* AppDelegate.swift */,
@@ -107,6 +126,7 @@
 				E95C5ECF24F0EF50004D62FB /* ViewController.swift */,
 				E95C5ED424F0EF53004D62FB /* Assets.xcassets */,
 				E95C5ED924F0EF53004D62FB /* Info.plist */,
+				E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */,
 				E95C5EDF24F0FA62004D62FB /* TabBarController.swift */,
 				E95C5EE124F0FB36004D62FB /* HomeController.swift */,
 			);
@@ -198,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E95C5ED524F0EF53004D62FB /* Assets.xcassets in Resources */,
+				E90626DD2504649F00DDA4DD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,9 +281,12 @@
 				E908C42524FCEFDF00A43151 /* ConfigBucketController.swift in Sources */,
 				E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */,
 				E95C5EEE24F1C468004D62FB /* QuizModel.swift in Sources */,
+				E93BBAD0250F620E00CCFD53 /* SignUpViewController.swift in Sources */,
 				E95C5EE624F0FB66004D62FB /* QuizCreationRootController.swift in Sources */,
 				E95C5EEC24F1C45A004D62FB /* QuizCreationManager.swift in Sources */,
+				E93BBAD6250F631400CCFD53 /* LoginViewController.swift in Sources */,
 				E95C5EE224F0FB36004D62FB /* HomeController.swift in Sources */,
+				E93BBAD8250F632300CCFD53 /* SignUpOrLoginViewController.swift in Sources */,
 				E95C5EEA24F1C441004D62FB /* BucketSelectionController.swift in Sources */,
 				E95C5EF524F1CDD1004D62FB /* HSUnderLineTextField.swift in Sources */,
 			);

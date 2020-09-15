@@ -11,6 +11,6 @@ import Foundation
 struct QuestionModel {
     
     var title: String?
-    var answers: [String]
-    var bucketValues: [[Double]]
+    var answers: [String]?
+    var bucketValues: [[Float]]?
 }
