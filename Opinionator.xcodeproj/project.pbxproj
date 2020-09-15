@@ -28,6 +28,7 @@
 		E95C5EF324F1C98B004D62FB /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF224F1C98B004D62FB /* QuestionModel.swift */; };
 		E95C5EF524F1CDD1004D62FB /* HSUnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF424F1CDD1004D62FB /* HSUnderLineTextField.swift */; };
 		E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */; };
+		E9B28CBE2511604B00B25DC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B28CBD2511604B00B25DC5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		E95C5EF224F1C98B004D62FB /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		E95C5EF424F1CDD1004D62FB /* HSUnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSUnderLineTextField.swift; sourceTree = "<group>"; };
 		E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ThemeColors.swift"; sourceTree = "<group>"; };
+		E9B28CBD2511604B00B25DC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		E95C5EEF24F1C7C5004D62FB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E9B28CBD2511604B00B25DC5 /* Extensions.swift */,
 				E95C5EF024F1C7D3004D62FB /* LayoutHelper.swift */,
 				E95C5EF424F1CDD1004D62FB /* HSUnderLineTextField.swift */,
 				E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */,
@@ -278,6 +281,7 @@
 				E95C5EE024F0FA62004D62FB /* TabBarController.swift in Sources */,
 				E95C5ECC24F0EF50004D62FB /* AppDelegate.swift in Sources */,
 				E95C5ECE24F0EF50004D62FB /* SceneDelegate.swift in Sources */,
+				E9B28CBE2511604B00B25DC5 /* Extensions.swift in Sources */,
 				E908C42524FCEFDF00A43151 /* ConfigBucketController.swift in Sources */,
 				E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */,
 				E95C5EEE24F1C468004D62FB /* QuizModel.swift in Sources */,

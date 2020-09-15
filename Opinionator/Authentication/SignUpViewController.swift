@@ -14,6 +14,7 @@ class SignUpViewController: UIViewController {
     var nickNameField = UITextField()
     var emailField = UITextField()
     var passwordField = UITextField()
+    var passwordAgainField = UITextField()
     var errorLabel = UILabel()
     var submitButton = UIButton()
 
@@ -23,18 +24,18 @@ class SignUpViewController: UIViewController {
         loadStackView()
         loadNickNameField()
         loadEmailField()
-        loadPasswordField()
+        loadPasswordFields()
         loadErrorLabel()
         loadSubmitButton()
         stackView.snp.makeConstraints { (make) in
             make.left.equalToSuperview().inset(10)
             make.right.equalToSuperview().inset(10)
-            make.height.equalTo(LayoutHelper.pixelRelativeToScreen(toHeight: 200))
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(75)
+            make.bottom.equalToSuperview().offset(-150)
         }
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: makeBackButton())
-        stackView.spacing = 10;
+        //stackView.spacing = 20;
         view.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
@@ -42,22 +43,34 @@ class SignUpViewController: UIViewController {
     func loadStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
+        stackView.addArrangedSubview(nickNameField)
         stackView.addArrangedSubview(emailField)
-        stackView.addArrangedSubview(errorLabel)
-        stackView.addArrangedSubview(submitButton)
+        stackView.addArrangedSubview(passwordField)
+        stackView.addArrangedSubview(passwordAgainField)
+        //stackView.addArrangedSubview(errorLabel)
         view.addSubview(stackView)
+        view.addSubview(submitButton)
     }
     
     func loadNickNameField() {
         nickNameField.placeholder = "Nickname - Changable later"
+        //nickNameField.setBottomBorder()
+        nickNameField.addShadowToTextField(cornerRadius: 10)
+        nickNameField.autocapitalizationType = .none
+        nickNameField.autocorrectionType = .no
+        styleField(nickNameField)
     }
     
     func loadEmailField() {
         emailField.placeholder = "Email"
+        styleField(emailField)
     }
     
-    func loadPasswordField() {
+    func loadPasswordFields() {
         passwordField.placeholder = "Password"
+        passwordAgainField.placeholder = "Password again"
+        styleField(passwordField)
+        styleField(passwordAgainField)
     }
     
     func loadErrorLabel() {
@@ -66,14 +79,31 @@ class SignUpViewController: UIViewController {
     
     func loadSubmitButton() {
         submitButton.setTitle("Sign Up", for: .normal)
+        submitButton.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview().offset(-30)
+            make.height.equalTo(50)
+            make.top.equalTo(stackView.snp_bottomMargin)
+            make.width.equalToSuperview().inset(10)
+            make.centerX.equalToSuperview()
+        }
+        submitButton.backgroundColor = .systemBlue
+        print(submitButton.frame.width)
+        print(submitButton.frame.height)
+    }
+    
+    func styleField(_ textField: UITextField) {
+        //textField.heightAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
+        textField.minimumFontSize = LayoutHelper.fontRelativeToScreen(toSize: 10)
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
     }
     
     func makeBackButton() -> UIButton {
-        let backButtonImage = UIImage(systemName: "hand.point.left.fill")
+        let backButtonImage = UIImage(systemName: "chevron.left")
         let backButton = UIButton(type: .custom)
         backButton.setImage(backButtonImage, for: .normal)
         backButton.tintColor = .blue
-        backButton.setTitle("  Back", for: .normal)
+        backButton.setTitle(" Back", for: .normal)
         backButton.setTitleColor(.blue, for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         return backButton
