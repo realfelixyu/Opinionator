@@ -10,5 +10,8 @@ target 'Opinionator' do
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'MaterialComponents/TextFields'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
 
 end

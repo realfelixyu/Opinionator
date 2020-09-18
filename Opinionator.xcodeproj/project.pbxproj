@@ -11,6 +11,7 @@
 		E90626DD2504649F00DDA4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */; };
 		E908C42324FCADA900A43151 /* QuestionAnswerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908C42224FCADA900A43151 /* QuestionAnswerController.swift */; };
 		E908C42524FCEFDF00A43151 /* ConfigBucketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E908C42424FCEFDF00A43151 /* ConfigBucketController.swift */; };
+		E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DB3E7251437F80046A42C /* AuthUtilities.swift */; };
 		E93BBAD0250F620E00CCFD53 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */; };
 		E93BBAD6250F631400CCFD53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBAD5250F631400CCFD53 /* LoginViewController.swift */; };
 		E93BBAD8250F632300CCFD53 /* SignUpOrLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */; };
@@ -38,6 +39,7 @@
 		E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E908C42224FCADA900A43151 /* QuestionAnswerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerController.swift; sourceTree = "<group>"; };
 		E908C42424FCEFDF00A43151 /* ConfigBucketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigBucketController.swift; sourceTree = "<group>"; };
+		E90DB3E7251437F80046A42C /* AuthUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUtilities.swift; sourceTree = "<group>"; };
 		E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E93BBAD5250F631400CCFD53 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOrLoginViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */,
 				E93BBAD5250F631400CCFD53 /* LoginViewController.swift */,
 				E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */,
+				E90DB3E7251437F80046A42C /* AuthUtilities.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				E95C5EEC24F1C45A004D62FB /* QuizCreationManager.swift in Sources */,
 				E93BBAD6250F631400CCFD53 /* LoginViewController.swift in Sources */,
 				E95C5EE224F0FB36004D62FB /* HomeController.swift in Sources */,
+				E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */,
 				E93BBAD8250F632300CCFD53 /* SignUpOrLoginViewController.swift in Sources */,
 				E95C5EEA24F1C441004D62FB /* BucketSelectionController.swift in Sources */,
 				E95C5EF524F1CDD1004D62FB /* HSUnderLineTextField.swift in Sources */,

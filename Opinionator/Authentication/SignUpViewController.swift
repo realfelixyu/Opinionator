@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+import Firebase
 
 class SignUpViewController: UIViewController {
     
@@ -49,6 +52,7 @@ class SignUpViewController: UIViewController {
         stackView.addArrangedSubview(passwordAgainField)
         //stackView.addArrangedSubview(errorLabel)
         view.addSubview(stackView)
+        view.addSubview(errorLabel)
         view.addSubview(submitButton)
     }
     
@@ -74,15 +78,28 @@ class SignUpViewController: UIViewController {
     }
     
     func loadErrorLabel() {
-        
+        errorLabel.alpha = 0
+        errorLabel.text = ""
+        errorLabel.textColor = .red
+        errorLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        errorLabel.numberOfLines = 3
+        errorLabel.textAlignment = .center
+        errorLabel.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview().offset(-100)
+//            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().inset(10)
+
+        }
     }
     
     func loadSubmitButton() {
         submitButton.setTitle("Sign Up", for: .normal)
+        submitButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
         submitButton.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().offset(-30)
             make.height.equalTo(50)
-            make.top.equalTo(stackView.snp_bottomMargin)
+            //make.top.equalTo(stackView.snp_bottomMargin)
             make.width.equalToSuperview().inset(10)
             make.centerX.equalToSuperview()
         }
@@ -111,6 +128,67 @@ class SignUpViewController: UIViewController {
 
     @objc func backButtonPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func signUpTapped(_ sender: Any) {
+        let error = validateFields()
+        if error != nil {
+            showError(error!)
+        } else {
+            let nickName = nickNameField.text!.trimmingCharacters(in: .newlines)
+            let email = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                if err != nil {
+                    self.showError("Error creating user")
+                } else {
+                    let db = Firestore.firestore()
+                    db.collection("users").addDocument(data: [
+                        "nickname": nickName,
+                        "newUser": "true",
+                        "uid": result!.user.uid
+                    ]) { (error) in
+                        if error != nil {
+                            self.showError("Error saving user data")
+                        }
+                    }
+                    self.transitionToHome()
+                }
+            }
+            
+        }
+    }
+    
+    func showError(_ message: String) {
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
+    
+    //check signup fields that the dat ais correct. Returns nil if everything is correct, else return error
+    func validateFields() -> String? {
+        if nickNameField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please fill in all fields."
+        }
+        
+        let cleanedPassword = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        if AuthUtilities.isPasswordValid(cleanedPassword) == false {
+            return "Please make sure your password is atleast 8 characters. contains a special character and a number."
+        }
+        
+        if (passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines) != passwordAgainField.text?.trimmingCharacters(in: .whitespacesAndNewlines)) {
+            return "Please make sure your passwords match"
+        }
+        
+        return nil
+    }
+    
+    func transitionToHome() {
+        let appVC = TabBarController()
+        view.window?.rootViewController = appVC
+        //navigationController?.pushViewController(appVC, animated: true)
     }
 
 }
