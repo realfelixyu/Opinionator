@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     var questionSectionLabel = UILabel()
@@ -257,7 +258,8 @@ class QuestionAnswerController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     @objc func tappedFinishCreationButton() {
-        //let db = Firebase.f
+        let db = Firestore.firestore()
+        db.collection("quiz").addDocument(data: <#T##[String : Any]#>)
     }
     
 }

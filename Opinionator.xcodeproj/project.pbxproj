@@ -15,21 +15,20 @@
 		E93BBAD0250F620E00CCFD53 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */; };
 		E93BBAD6250F631400CCFD53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBAD5250F631400CCFD53 /* LoginViewController.swift */; };
 		E93BBAD8250F632300CCFD53 /* SignUpOrLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */; };
+		E95A60F3253E3BF1000C3165 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A60F2253E3BF1000C3165 /* MainTabController.swift */; };
+		E95A60FB253E3C3A000C3165 /* AutoLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A60FA253E3C3A000C3165 /* AutoLayoutExtension.swift */; };
+		E95A60FE253E3C9D000C3165 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A60FD253E3C9D000C3165 /* Constants.swift */; };
 		E95C5ECC24F0EF50004D62FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5ECB24F0EF50004D62FB /* AppDelegate.swift */; };
 		E95C5ECE24F0EF50004D62FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5ECD24F0EF50004D62FB /* SceneDelegate.swift */; };
 		E95C5ED024F0EF50004D62FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5ECF24F0EF50004D62FB /* ViewController.swift */; };
 		E95C5ED524F0EF53004D62FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95C5ED424F0EF53004D62FB /* Assets.xcassets */; };
-		E95C5EE024F0FA62004D62FB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EDF24F0FA62004D62FB /* TabBarController.swift */; };
-		E95C5EE224F0FB36004D62FB /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EE124F0FB36004D62FB /* HomeController.swift */; };
 		E95C5EE624F0FB66004D62FB /* QuizCreationRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EE524F0FB66004D62FB /* QuizCreationRootController.swift */; };
 		E95C5EEA24F1C441004D62FB /* BucketSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EE924F1C441004D62FB /* BucketSelectionController.swift */; };
 		E95C5EEC24F1C45A004D62FB /* QuizCreationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EEB24F1C45A004D62FB /* QuizCreationManager.swift */; };
 		E95C5EEE24F1C468004D62FB /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EED24F1C468004D62FB /* QuizModel.swift */; };
 		E95C5EF124F1C7D3004D62FB /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF024F1C7D3004D62FB /* LayoutHelper.swift */; };
 		E95C5EF324F1C98B004D62FB /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF224F1C98B004D62FB /* QuestionModel.swift */; };
-		E95C5EF524F1CDD1004D62FB /* HSUnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF424F1CDD1004D62FB /* HSUnderLineTextField.swift */; };
 		E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */; };
-		E9B28CBE2511604B00B25DC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B28CBD2511604B00B25DC5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,23 +42,22 @@
 		E93BBACF250F620E00CCFD53 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E93BBAD5250F631400CCFD53 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93BBAD7250F632300CCFD53 /* SignUpOrLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpOrLoginViewController.swift; sourceTree = "<group>"; };
+		E95A60F2253E3BF1000C3165 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		E95A60FA253E3C3A000C3165 /* AutoLayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutExtension.swift; sourceTree = "<group>"; };
+		E95A60FD253E3C9D000C3165 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E95C5EC824F0EF50004D62FB /* Opinionator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Opinionator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95C5ECB24F0EF50004D62FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E95C5ECD24F0EF50004D62FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E95C5ECF24F0EF50004D62FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E95C5ED424F0EF53004D62FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E95C5ED924F0EF53004D62FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E95C5EDF24F0FA62004D62FB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		E95C5EE124F0FB36004D62FB /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		E95C5EE524F0FB66004D62FB /* QuizCreationRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCreationRootController.swift; sourceTree = "<group>"; };
 		E95C5EE924F1C441004D62FB /* BucketSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketSelectionController.swift; sourceTree = "<group>"; };
 		E95C5EEB24F1C45A004D62FB /* QuizCreationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCreationManager.swift; sourceTree = "<group>"; };
 		E95C5EED24F1C468004D62FB /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		E95C5EF024F1C7D3004D62FB /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 		E95C5EF224F1C98B004D62FB /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
-		E95C5EF424F1CDD1004D62FB /* HSUnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSUnderLineTextField.swift; sourceTree = "<group>"; };
 		E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ThemeColors.swift"; sourceTree = "<group>"; };
-		E9B28CBD2511604B00B25DC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +130,7 @@
 				E95C5ED424F0EF53004D62FB /* Assets.xcassets */,
 				E95C5ED924F0EF53004D62FB /* Info.plist */,
 				E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */,
-				E95C5EDF24F0FA62004D62FB /* TabBarController.swift */,
-				E95C5EE124F0FB36004D62FB /* HomeController.swift */,
+				E95A60F2253E3BF1000C3165 /* MainTabController.swift */,
 			);
 			path = Opinionator;
 			sourceTree = "<group>";
@@ -155,10 +152,10 @@
 		E95C5EEF24F1C7C5004D62FB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				E9B28CBD2511604B00B25DC5 /* Extensions.swift */,
 				E95C5EF024F1C7D3004D62FB /* LayoutHelper.swift */,
-				E95C5EF424F1CDD1004D62FB /* HSUnderLineTextField.swift */,
 				E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */,
+				E95A60FA253E3C3A000C3165 /* AutoLayoutExtension.swift */,
+				E95A60FD253E3C9D000C3165 /* Constants.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -278,13 +275,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E95C5ED024F0EF50004D62FB /* ViewController.swift in Sources */,
+				E95A60FE253E3C9D000C3165 /* Constants.swift in Sources */,
 				E908C42324FCADA900A43151 /* QuestionAnswerController.swift in Sources */,
+				E95A60FB253E3C3A000C3165 /* AutoLayoutExtension.swift in Sources */,
+				E95A60F3253E3BF1000C3165 /* MainTabController.swift in Sources */,
 				E95C5EF124F1C7D3004D62FB /* LayoutHelper.swift in Sources */,
 				E95C5EF324F1C98B004D62FB /* QuestionModel.swift in Sources */,
-				E95C5EE024F0FA62004D62FB /* TabBarController.swift in Sources */,
 				E95C5ECC24F0EF50004D62FB /* AppDelegate.swift in Sources */,
 				E95C5ECE24F0EF50004D62FB /* SceneDelegate.swift in Sources */,
-				E9B28CBE2511604B00B25DC5 /* Extensions.swift in Sources */,
 				E908C42524FCEFDF00A43151 /* ConfigBucketController.swift in Sources */,
 				E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */,
 				E95C5EEE24F1C468004D62FB /* QuizModel.swift in Sources */,
@@ -292,11 +290,9 @@
 				E95C5EE624F0FB66004D62FB /* QuizCreationRootController.swift in Sources */,
 				E95C5EEC24F1C45A004D62FB /* QuizCreationManager.swift in Sources */,
 				E93BBAD6250F631400CCFD53 /* LoginViewController.swift in Sources */,
-				E95C5EE224F0FB36004D62FB /* HomeController.swift in Sources */,
 				E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */,
 				E93BBAD8250F632300CCFD53 /* SignUpOrLoginViewController.swift in Sources */,
 				E95C5EEA24F1C441004D62FB /* BucketSelectionController.swift in Sources */,
-				E95C5EF524F1CDD1004D62FB /* HSUnderLineTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
