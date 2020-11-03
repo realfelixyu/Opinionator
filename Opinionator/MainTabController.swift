@@ -71,7 +71,7 @@ class MainTabController: UITabBarController {
         let explore = ExploreController()
         let nav2 = templateNavigationController(image: UIImage(named: "search_unselected"), rootViewController: explore)
         
-        let creation = CreationTabController()
+        let creation = QuizCreationFirstStepController()
         let nav3 = templateNavigationController(image: UIImage(systemName: "plus.square"), rootViewController: creation)
         
         let myContent = MyContentTabController()

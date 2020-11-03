@@ -29,6 +29,7 @@
 		E95C5ED524F0EF53004D62FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95C5ED424F0EF53004D62FB /* Assets.xcassets */; };
 		E95C5EF124F1C7D3004D62FB /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF024F1C7D3004D62FB /* LayoutHelper.swift */; };
 		E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */; };
+		E96CB33E25520F2A00AD046B /* QuizCreationFirstStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB33D25520F2A00AD046B /* QuizCreationFirstStepController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		E95C5ED924F0EF53004D62FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E95C5EF024F1C7D3004D62FB /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 		E95C5EF624F1D129004D62FB /* UIColor+ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ThemeColors.swift"; sourceTree = "<group>"; };
+		E96CB33D25520F2A00AD046B /* QuizCreationFirstStepController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCreationFirstStepController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				E95A61A9253E6261000C3165 /* CreationTabController.swift */,
+				E96CB33D25520F2A00AD046B /* QuizCreationFirstStepController.swift */,
 			);
 			path = QuizCreation;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			files = (
 				E95A6129253E4649000C3165 /* LoginController.swift in Sources */,
 				E95C5ED024F0EF50004D62FB /* ViewController.swift in Sources */,
+				E96CB33E25520F2A00AD046B /* QuizCreationFirstStepController.swift in Sources */,
 				E95A61A5253E620A000C3165 /* MyContentTabController.swift in Sources */,
 				E95A60FE253E3C9D000C3165 /* Constants.swift in Sources */,
 				E95A60FB253E3C3A000C3165 /* AutoLayoutExtension.swift in Sources */,

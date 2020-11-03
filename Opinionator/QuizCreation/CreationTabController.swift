@@ -109,7 +109,7 @@ class CreationTabController: UIViewController {
         view.addSubview(bucketSectionLabel)
         bucketSectionLabel.anchor(top: quizNameField.bottomAnchor, left: view.leftAnchor, paddingTop: 50, paddingLeft: 50)
         
-        for (index, tf) in buckets.enumerated(){
+        for (index, tf) in buckets.enumerated() {
             view.addSubview(tf)
             if (index == 0) {
                 tf.anchor(top: bucketSectionLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 30, paddingRight: 30)

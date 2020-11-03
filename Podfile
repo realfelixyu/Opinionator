@@ -15,6 +15,6 @@ target 'Opinionator' do
   pod 'Firebase/Storage'
   pod 'SDWebImage', '~> 5.0'
   pod 'ActiveLabel'
-
+  pod 'LBTATools', '~> 1.0'
 
 end
