@@ -126,7 +126,9 @@ class QuizCreationFirstStepController: LBTAFormController {
         var bucketNames = [String]()
         for bucket in bucketFields {
             if let text = bucket.text {
-                bucketNames.append(text)
+                if text != "" {
+                    bucketNames.append(text)
+                }
             }
         }
         let controller = QuestionCreationController(quizName: quizNameField.text ?? "No quiz name", bucketNames: bucketNames)

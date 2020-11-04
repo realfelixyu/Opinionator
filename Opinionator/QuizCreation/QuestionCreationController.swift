@@ -19,7 +19,7 @@ class QuestionCreationController: UIViewController {
     var bucketNames: [String]
     var questionTitlesData = [String]()
     var answersData = [[String]]()
-    var bucketsData = [[[String]]]()
+    var bucketsData = [[[Double]]]()
     
     var imageBanner: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "plumber.png"))
@@ -65,6 +65,7 @@ class QuestionCreationController: UIViewController {
         tf.borderStyle = .none
         tf.font = UIFont.systemFont(ofSize: 24)
         tf.placeholder = "Enter Question"
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -105,6 +106,8 @@ class QuestionCreationController: UIViewController {
         self.quizName = quizName
         self.bucketNames = bucketNames
         //wtf why do we have to call super.init after setting quizName?
+        print("DEBUG: \(quizName)")
+        print("DEBUG: \(bucketNames)")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -124,9 +127,7 @@ class QuestionCreationController: UIViewController {
         configureHeader()
         configureQuestionFields()
         configureFooter()
-        let c = contentStack.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        c.priority = UILayoutPriority(750)
-        c.isActive = true
+        addDefaultBucketValues()
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -156,6 +157,7 @@ class QuestionCreationController: UIViewController {
             configureButtons[index].titleLabel?.font = UIFont.systemFont(ofSize: 20)
             configureButtons[index].addTarget(self, action: #selector(handleConfigureBucket), for: .touchUpInside)
             configureButtons[index].layer.cornerRadius = 15
+            configureButtons[index].tag = index
             contentStack.addArrangedSubview(stack)
             
             field.placeholder = "Enter answer option"
@@ -173,6 +175,16 @@ class QuestionCreationController: UIViewController {
         contentStack.addArrangedSubview(submitButton)
     }
     
+    // add default bucket values(0.0) for a new question with 4 answer choices
+    func addDefaultBucketValues() {
+        var firstQuestionBucketData = [[Double]]()
+        for i in (0...4) {
+            var list = [Double](repeating: 0.0, count: bucketNames.count)
+            firstQuestionBucketData.append(list)
+        }
+        bucketsData.append(firstQuestionBucketData)
+    }
+    
     @objc func handleNextQuestion() {
         print("DEBUG: handle next question")
     }
@@ -186,7 +198,7 @@ class QuestionCreationController: UIViewController {
     }
     
     @objc func handleConfigureBucket(button: UIButton) {
-        let controller = BucketConfigurationController()
+        let controller = BucketConfigurationController(questionIndex: currQuestionIndex, answerIndex: button.tag, bucketsData: bucketsData, bucketNames: bucketNames, questionTitle: questionTitleField.text ?? "Empty question title", answerTitle: answerFields[button.tag].text ?? "Unwritten answer option")
         navigationController?.pushViewController(controller, animated: true)
     }
 }
