@@ -78,6 +78,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.0.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
+  - IQKeyboardManager (6.5.6)
   - LBTATools (1.0.12)
   - leveldb-library (1.22)
   - MaterialComponents/AnimationTiming (118.2.0)
@@ -154,6 +155,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - IQKeyboardManager
   - LBTATools (~> 1.0)
   - MaterialComponents/TextFields
   - SDWebImage (~> 5.0)
@@ -174,6 +176,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - IQKeyboardManager
     - LBTATools
     - leveldb-library
     - MaterialComponents
@@ -198,6 +201,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 6ce8004a961db1b905740d7be106c61ba7e89c21
   GoogleUtilities: ffb2f4159f2c897c6e8992bd7fbcdef8a300589c
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MaterialComponents: fc3dba46cf3ae8495728a875778b47d0c6ec7ed5
@@ -208,6 +212,6 @@ SPEC CHECKSUMS:
   SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: 2af04f0684ee1f1ea48c26738e4bb8ca934e9a32
+PODFILE CHECKSUM: 1ab12fec717bd99902769570f34cdcdc04104eb4
 
 COCOAPODS: 1.9.3

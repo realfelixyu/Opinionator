@@ -16,5 +16,6 @@ target 'Opinionator' do
   pod 'SDWebImage', '~> 5.0'
   pod 'ActiveLabel'
   pod 'LBTATools', '~> 1.0'
+  pod 'IQKeyboardManager'
 
 end

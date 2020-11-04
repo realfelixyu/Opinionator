@@ -44,33 +44,44 @@ class QuizCreationFirstStepController: LBTAFormController {
         return label
     }()
     
-    var bucketFields = [UITextField(), UITextField()]
+    var bucketFields = [UITextField(), UITextField(), UITextField(), UITextField(), UITextField(), UITextField()]
     
-    var addBucketButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Add Bucket", for: .normal)
-        button.layer.borderColor = UIColor.twitterBlue.cgColor
-        button.layer.borderWidth = 1.25
-        button.setTitleColor(.twitterBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.addTarget(self, action: #selector(handleAddBucket), for: .touchUpInside)
-        return button
-    }()
+//    var addBucketButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Add Bucket", for: .normal)
+//        button.layer.borderColor = UIColor.twitterBlue.cgColor
+//        button.layer.borderWidth = 1.25
+//        button.setTitleColor(.twitterBlue, for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+//        button.addTarget(self, action: #selector(handleAddBucket), for: .touchUpInside)
+//        return button
+//    }()
     
-    var removeBucketButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Remove Bucket", for: .normal)
-        button.layer.borderColor = UIColor.twitterBlue.cgColor
-        button.layer.borderWidth = 1.25
-        button.setTitleColor(.twitterBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.addTarget(self, action: #selector(handleRemoveBucket), for: .touchUpInside)
-        return button
+//    var removeBucketButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Remove Bucket", for: .normal)
+//        button.layer.borderColor = UIColor.twitterBlue.cgColor
+//        button.layer.borderWidth = 1.25
+//        button.setTitleColor(.twitterBlue, for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+//        button.addTarget(self, action: #selector(handleRemoveBucket), for: .touchUpInside)
+//        return button
+//    }()
+    
+    var continueButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Continue", for: .normal)
+            button.layer.borderColor = UIColor.twitterBlue.cgColor
+            button.layer.borderWidth = 1.25
+            button.setTitleColor(.twitterBlue, for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            button.addTarget(self, action: #selector(handleContinue), for: .touchUpInside)
+            return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("DEBUG: quizcreationfirststepctonroller loaded")
+        scrollView.alwaysBounceVertical = true
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 12
         formContainerStackView.layoutMargins = .init(top: 10, left: 24, bottom: 0, right: 24)
@@ -81,7 +92,7 @@ class QuizCreationFirstStepController: LBTAFormController {
         formContainerStackView.addArrangedSubview(bucketSectionLabel)
         
         configureBucketFields()
-        formContainerStackView.addArrangedSubview(addBucketButton)
+        formContainerStackView.addArrangedSubview(continueButton)
     }
     
     func configureBucketFields() {
@@ -93,21 +104,32 @@ class QuizCreationFirstStepController: LBTAFormController {
             tf.borderStyle = .roundedRect
         }
     }
-    
-    @objc func handleAddBucket() {
-        print("DEBUG: ha ndle add bucket")
-        print("debug: \(bucketFields.count)")
-        let tf = UITextField()
-        bucketFields.append(tf)
-        tf.placeholder = "Enter bucket #\(bucketFields.count)"
-        tf.textColor = .black
-        tf.font = UIFont.systemFont(ofSize: 20)
-        tf.borderStyle = .roundedRect
-        //formContainerStackView.addArrangedSubview(tf)
-        formContainerStackView.insertSubview(tf, at: formContainerStackView.subviews.count - 2)
-    }
+//
+//    @objc func handleAddBucket() {
+//        print("DEBUG: ha ndle add bucket")
+//        print("debug: \(bucketFields.count)")
+//        let tf = UITextField()
+//        bucketFields.append(tf)
+//        tf.placeholder = "Enter bucket #\(bucketFields.count)"
+//        tf.textColor = .black
+//        tf.font = UIFont.systemFont(ofSize: 20)
+//        tf.borderStyle = .roundedRect
+//        //formContainerStackView.addArrangedSubview(tf)
+//        formContainerStackView.insertSubview(tf, at: formContainerStackView.subviews.count - 2)
+//    }
     
     @objc func handleRemoveBucket() {
         
+    }
+    
+    @objc func handleContinue() {
+        var bucketNames = [String]()
+        for bucket in bucketFields {
+            if let text = bucket.text {
+                bucketNames.append(text)
+            }
+        }
+        let controller = QuestionCreationController(quizName: quizNameField.text ?? "No quiz name", bucketNames: bucketNames)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
