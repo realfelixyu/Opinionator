@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+
+
 class QuestionCreationController: UIViewController {
     
     var answerFields = [UITextField(), UITextField(), UITextField(), UITextField()]
@@ -19,7 +21,7 @@ class QuestionCreationController: UIViewController {
     var bucketNames: [String]
     var questionTitlesData = [String]()
     var answersData = [[String]]()
-    var bucketsData = [[[Double]]]()
+    var bucketsData = [[[Float]]]()
     
     var imageBanner: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "plumber.png"))
@@ -123,6 +125,7 @@ class QuestionCreationController: UIViewController {
         scrollView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
         scrollView.addSubview(contentStack)
         contentStack.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: contentStack.bounds.height + 100)
 
         configureHeader()
         configureQuestionFields()
@@ -172,25 +175,49 @@ class QuestionCreationController: UIViewController {
     func configureFooter() {
         contentStack.addArrangedSubview(nextButton)
         contentStack.addArrangedSubview(prevButton)
+        prevButton.isEnabled = false
         contentStack.addArrangedSubview(submitButton)
     }
     
     // add default bucket values(0.0) for a new question with 4 answer choices
     func addDefaultBucketValues() {
-        var firstQuestionBucketData = [[Double]]()
-        for i in (0...4) {
-            var list = [Double](repeating: 0.0, count: bucketNames.count)
-            firstQuestionBucketData.append(list)
+        var newBucketData = [[Float]]()
+        for i in (0..<4) {
+            var list = [Float](repeating: 0.0, count: bucketNames.count)
+            newBucketData.append(list)
         }
-        bucketsData.append(firstQuestionBucketData)
+        var newAnswerData = [String](repeating: "", count: 4)
+        bucketsData.append(newBucketData)
+        answersData.append(newAnswerData)
+        questionTitlesData.append("")
     }
     
     @objc func handleNextQuestion() {
-        print("DEBUG: handle next question")
+        if (currQuestionIndex >= questionTitlesData.count) {
+            questionTitlesData.append(questionLabel.text ?? "")
+        } else {
+            questionTitlesData[currQuestionIndex] = questionLabel.text ?? ""
+        }
+        for i in 0..<4 {
+            answersData[currQuestionIndex][i] = answerFields[i].text ?? ""
+        }
+        //next question data
+        currQuestionIndex += 1
+        if (questionTitlesData.count <= currQuestionIndex) {
+            addDefaultBucketValues()
+        }
+        //display new data on view
+        for i in 0..<4 {
+            answerFields[i].text = answersData[currQuestionIndex][i]
+        }
+        questionTitleField.text = questionTitlesData[currQuestionIndex]
+        questionNumLabel.text = "Question Number: \(currQuestionIndex + 1)"
+        
+        prevButton.isEnabled = currQuestionIndex > 0
     }
     
     @objc func handlePreviousQuestion() {
-        
+        print("DEBUG: handle previous question")
     }
     
     @objc func handleSubmit() {
@@ -198,7 +225,14 @@ class QuestionCreationController: UIViewController {
     }
     
     @objc func handleConfigureBucket(button: UIButton) {
-        let controller = BucketConfigurationController(questionIndex: currQuestionIndex, answerIndex: button.tag, bucketsData: bucketsData, bucketNames: bucketNames, questionTitle: questionTitleField.text ?? "Empty question title", answerTitle: answerFields[button.tag].text ?? "Unwritten answer option")
+        let controller = BucketConfigurationController(data: bucketsData[currQuestionIndex][button.tag], answerIndex: button.tag, bucketNames: bucketNames, questionTitle: questionTitleField.text ?? "Empty question title", answerTitle: answerFields[button.tag].text ?? "Unwritten answer option")
+        controller.delegate = self
         navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension QuestionCreationController: BucketDataSaver {
+    func saveData(data: [Float], answerIndex: Int) {
+        bucketsData[currQuestionIndex][answerIndex] = data
     }
 }

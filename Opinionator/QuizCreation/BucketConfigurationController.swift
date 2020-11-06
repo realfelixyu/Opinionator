@@ -9,20 +9,32 @@
 import Foundation
 import UIKit
 
+protocol BucketDataSaver {
+    func saveData(data: [Float], answerIndex: Int)
+}
+
 class BucketConfigurationController: UIViewController {
     
-    var bucketsData: [[[Double]]]
+    var data: [Float]
     var bucketNames: [String]
-    var questionIndex: Int
     var answerIndex: Int
     let questionTitle: String
     let answerTitle: String
+    var delegate: BucketDataSaver?
     
     lazy var sliders: [UISlider] = {
         //have to change 4 to bucketNames.count later
         var list = [UISlider]()
-        for i in 0...3 {
+        for i in 0..<bucketNames.count {
             list.append(UISlider())
+        }
+        return list
+    }()
+    
+    lazy var sliderLabels: [UILabel] = {
+        var list = [UILabel]()
+        for i in 0..<bucketNames.count {
+            list.append(UILabel())
         }
         return list
     }()
@@ -54,10 +66,9 @@ class BucketConfigurationController: UIViewController {
         return label
     }()
     
-    init(questionIndex: Int, answerIndex: Int, bucketsData: [[[Double]]], bucketNames: [String], questionTitle: String, answerTitle: String) {
-        self.bucketsData = bucketsData
-        self.questionIndex = questionIndex
+    init(data: [Float], answerIndex: Int, bucketNames: [String], questionTitle: String, answerTitle: String) {
         self.answerIndex = answerIndex
+        self.data = data
         self.bucketNames = bucketNames
         self.questionTitle = questionTitle
         self.answerTitle = answerTitle
@@ -84,13 +95,22 @@ class BucketConfigurationController: UIViewController {
         configureSliders()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        for i in 0..<bucketNames.count {
+            // usinng double to store float, should maybe be changed later.
+            data[i] = sliders[i].value
+            //print("DEBUG: \(sliders[i].value)")
+        }
+        delegate?.saveData(data: data, answerIndex: answerIndex)
+    }
+    
     func configureHeader() {
         contentStack.addArrangedSubview(questionTitleLabel)
         contentStack.addArrangedSubview(answerTitleLabel)
     }
     
     func configureSliders() {
-        print("DEBUG \(sliders.count)")
+        //print("DEBUG \(sliders.count)")
         for (index, slider) in sliders.enumerated() {
             var label = UILabel()
             label.textColor = .black
@@ -102,12 +122,21 @@ class BucketConfigurationController: UIViewController {
             sliders[index].addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
             sliders[index].isContinuous = true
             sliders[index].tag = index
+            sliders[index].value = data[index]
+            
+            sliderLabels[index].text = String(sliders[index].value)
+            sliderLabels[index].font = UIFont.systemFont(ofSize: 18)
+            sliderLabels[index].textColor = .black
+            sliderLabels[index].textAlignment = .center
+            
             contentStack.addArrangedSubview(label)
+            contentStack.addArrangedSubview(sliderLabels[index])
             contentStack.addArrangedSubview(sliders[index])
         }
     }
     
     @objc func handleSliderChange(slider: UISlider) {
         print("DEBUG: handle slider change")
+        sliderLabels[slider.tag].text = String(slider.value)
     }
 }

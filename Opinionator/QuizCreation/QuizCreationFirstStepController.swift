@@ -44,18 +44,18 @@ class QuizCreationFirstStepController: LBTAFormController {
         return label
     }()
     
-    var bucketFields = [UITextField(), UITextField(), UITextField(), UITextField(), UITextField(), UITextField()]
+    var bucketFields = [UITextField(), UITextField(), UITextField(), UITextField()]
     
-//    var addBucketButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Add Bucket", for: .normal)
-//        button.layer.borderColor = UIColor.twitterBlue.cgColor
-//        button.layer.borderWidth = 1.25
-//        button.setTitleColor(.twitterBlue, for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-//        button.addTarget(self, action: #selector(handleAddBucket), for: .touchUpInside)
-//        return button
-//    }()
+    var addBucketButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Add Bucket", for: .normal)
+        button.layer.borderColor = UIColor.twitterBlue.cgColor
+        button.layer.borderWidth = 1.25
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(handleAddBucket), for: .touchUpInside)
+        return button
+    }()
     
 //    var removeBucketButton: UIButton = {
 //        let button = UIButton(type: .system)
@@ -81,7 +81,7 @@ class QuizCreationFirstStepController: LBTAFormController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.alwaysBounceVertical = true
+        //scrollView.alwaysBounceVertical = true
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 12
         formContainerStackView.layoutMargins = .init(top: 10, left: 24, bottom: 0, right: 24)
@@ -92,6 +92,7 @@ class QuizCreationFirstStepController: LBTAFormController {
         formContainerStackView.addArrangedSubview(bucketSectionLabel)
         
         configureBucketFields()
+        formContainerStackView.addArrangedSubview(addBucketButton)
         formContainerStackView.addArrangedSubview(continueButton)
     }
     
@@ -105,18 +106,19 @@ class QuizCreationFirstStepController: LBTAFormController {
         }
     }
 //
-//    @objc func handleAddBucket() {
-//        print("DEBUG: ha ndle add bucket")
-//        print("debug: \(bucketFields.count)")
-//        let tf = UITextField()
-//        bucketFields.append(tf)
-//        tf.placeholder = "Enter bucket #\(bucketFields.count)"
-//        tf.textColor = .black
-//        tf.font = UIFont.systemFont(ofSize: 20)
-//        tf.borderStyle = .roundedRect
-//        //formContainerStackView.addArrangedSubview(tf)
-//        formContainerStackView.insertSubview(tf, at: formContainerStackView.subviews.count - 2)
-//    }
+    @objc func handleAddBucket() {
+        print("DEBUG: handle add bucket")
+        print("debug: \(bucketFields.count)")
+        let tf = UITextField()
+        bucketFields.append(tf)
+        tf.placeholder = "Enter bucket #\(bucketFields.count)"
+        tf.textColor = .black
+        tf.font = UIFont.systemFont(ofSize: 20)
+        tf.borderStyle = .roundedRect
+        //formContainerStackView.addArrangedSubview(tf)
+        formContainerStackView.insertArrangedSubview(tf, at: formContainerStackView.subviews.count - 2)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: formContainerStackView.bounds.height + 100)
+    }
     
     @objc func handleRemoveBucket() {
         
