@@ -10,7 +10,7 @@ import Foundation
 
 struct QuizModel {
     let quizID: String
-    let quizName: String
+    let title: String
     var timestamp: Date!
     var creator: User
     var questions: [String]
@@ -22,7 +22,7 @@ struct QuizModel {
         self.quizID = quizID
         self.creator = creator
         
-        self.quizName = dictionary["quizName"] as? String ?? ""
+        self.title = dictionary["quizName"] as? String ?? ""
         self.questions = dictionary["questions"] as? [String] ?? []
         self.answers = dictionary["answers"] as? [[String]] ?? []
         self.buckets = dictionary["buckets"] as? [[[String]]] ?? []

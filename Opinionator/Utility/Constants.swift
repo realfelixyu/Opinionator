@@ -18,3 +18,5 @@ let REF_USER_FOLLOWERS = DB_REF.child("user-followers")
 let REF_USER_FOLLOWINGS = DB_REF.child("user-followings")
 
 let REF_USER_USERNAMES = DB_REF.child("user-usernames")
+
+let REF_QUIZ = DB_REF.child("quizzes")

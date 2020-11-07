@@ -10,12 +10,21 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class FeedController: UIViewController {
+private let reuseIdentifier = "quizCell"
+
+class FeedController: UICollectionViewController {
     
     var user: User? {
         didSet{
-            configureUI()
             configureLeftBarButton()
+            fetchQuizzes()
+        }
+    }
+    
+    private var quizzes = [QuizModel]() {
+        didSet {
+            collectionView.reloadData()
+            print("DEBUG: quizzes set in feedcontroller size: \(quizzes.count)")
         }
     }
     
@@ -25,8 +34,10 @@ class FeedController: UIViewController {
     }
     
     func configureUI() {
-        view.backgroundColor = .systemBlue
+        collectionView.backgroundColor = .white
         navigationItem.title = "Home"
+        
+        collectionView.register(QuizCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     func configureLeftBarButton() {
@@ -51,7 +62,36 @@ class FeedController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
     
+    func fetchQuizzes() {
+        QuizCreationService.shared.fetchQuizzes { (quizzes) in
+            self.quizzes = quizzes
+        }
+    }
+    
     @objc func handleProfileImageTap() {
         
     }
 }
+
+extension FeedController {
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return quizzes.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! QuizCell
+        cell.quiz = quizzes[indexPath.row]
+        return cell
+    }
+}
+
+extension FeedController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 400, height: 400)
+    }
+    
+}
+
+

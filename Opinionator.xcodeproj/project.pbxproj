@@ -10,6 +10,10 @@
 		A14878A5C098AE3EC84541C8 /* Pods_Opinionator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3133852CDA9FF2DB13C006 /* Pods_Opinionator.framework */; };
 		E90626DD2504649F00DDA4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */; };
 		E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DB3E7251437F80046A42C /* AuthUtilities.swift */; };
+		E9586713255614EE000A574E /* QuizCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9586712255614EE000A574E /* QuizCreationService.swift */; };
+		E958671E25562BCA000A574E /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958671D25562BCA000A574E /* QuizCell.swift */; };
+		E958672125562FED000A574E /* QuizCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958672025562FED000A574E /* QuizCellViewModel.swift */; };
+		E9586725255634A5000A574E /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9586724255634A5000A574E /* UserService.swift */; };
 		E95A60F3253E3BF1000C3165 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A60F2253E3BF1000C3165 /* MainTabController.swift */; };
 		E95A60FB253E3C3A000C3165 /* AutoLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A60FA253E3C3A000C3165 /* AutoLayoutExtension.swift */; };
 		E95A60FE253E3C9D000C3165 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A60FD253E3C9D000C3165 /* Constants.swift */; };
@@ -41,6 +45,10 @@
 		D0FFB856A8845641628C0C3C /* Pods-Opinionator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Opinionator.release.xcconfig"; path = "Target Support Files/Pods-Opinionator/Pods-Opinionator.release.xcconfig"; sourceTree = "<group>"; };
 		E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E90DB3E7251437F80046A42C /* AuthUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUtilities.swift; sourceTree = "<group>"; };
+		E9586712255614EE000A574E /* QuizCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCreationService.swift; sourceTree = "<group>"; };
+		E958671D25562BCA000A574E /* QuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
+		E958672025562FED000A574E /* QuizCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCellViewModel.swift; sourceTree = "<group>"; };
+		E9586724255634A5000A574E /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		E95A60F2253E3BF1000C3165 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		E95A60FA253E3C3A000C3165 /* AutoLayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutExtension.swift; sourceTree = "<group>"; };
 		E95A60FD253E3C9D000C3165 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -108,6 +116,14 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		E958672325563490000A574E /* SharedAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E9586724255634A5000A574E /* UserService.swift */,
+			);
+			path = SharedAPI;
+			sourceTree = "<group>";
+		};
 		E95A6133253E5386000C3165 /* ProfileTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				E95A6136253E53B7000C3165 /* FeedController.swift */,
+				E958671D25562BCA000A574E /* QuizCell.swift */,
+				E958672025562FED000A574E /* QuizCellViewModel.swift */,
 			);
 			path = FeedTab;
 			sourceTree = "<group>";
@@ -170,6 +188,7 @@
 		E95C5ECA24F0EF50004D62FB /* Opinionator */ = {
 			isa = PBXGroup;
 			children = (
+				E958672325563490000A574E /* SharedAPI */,
 				E95A6139253E54A8000C3165 /* Model */,
 				E93BBACE250F61E100CCFD53 /* Authentication */,
 				E95A61A3253E61F8000C3165 /* MyContent */,
@@ -196,6 +215,7 @@
 				E96CB33D25520F2A00AD046B /* QuizCreationFirstStepController.swift */,
 				E96CB371255227B100AD046B /* QuestionCreationController.swift */,
 				E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */,
+				E9586712255614EE000A574E /* QuizCreationService.swift */,
 			);
 			path = QuizCreation;
 			sourceTree = "<group>";
@@ -328,6 +348,7 @@
 			files = (
 				E96CB37C25524B4800AD046B /* BucketConfigurationController.swift in Sources */,
 				E95A6129253E4649000C3165 /* LoginController.swift in Sources */,
+				E9586725255634A5000A574E /* UserService.swift in Sources */,
 				E95C5ED024F0EF50004D62FB /* ViewController.swift in Sources */,
 				E96CB33E25520F2A00AD046B /* QuizCreationFirstStepController.swift in Sources */,
 				E95A61A5253E620A000C3165 /* MyContentTabController.swift in Sources */,
@@ -337,7 +358,9 @@
 				E95A6197253E60D7000C3165 /* ExploreController.swift in Sources */,
 				E95C5EF124F1C7D3004D62FB /* LayoutHelper.swift in Sources */,
 				E95C5ECC24F0EF50004D62FB /* AppDelegate.swift in Sources */,
+				E9586713255614EE000A574E /* QuizCreationService.swift in Sources */,
 				E95A61AA253E6261000C3165 /* CreationTabController.swift in Sources */,
+				E958671E25562BCA000A574E /* QuizCell.swift in Sources */,
 				E95C5ECE24F0EF50004D62FB /* SceneDelegate.swift in Sources */,
 				E95A613B253E54B2000C3165 /* User.swift in Sources */,
 				E95A6122253E442D000C3165 /* AuthService.swift in Sources */,
@@ -345,6 +368,7 @@
 				E95A619A253E615B000C3165 /* ProfileTabController.swift in Sources */,
 				E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */,
 				E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */,
+				E958672125562FED000A574E /* QuizCellViewModel.swift in Sources */,
 				E96CB3752552294000AD046B /* QuizModel.swift in Sources */,
 				E95A612F253E47DC000C3165 /* RegistrationController.swift in Sources */,
 				E96CB372255227B100AD046B /* QuestionCreationController.swift in Sources */,
