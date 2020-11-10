@@ -194,9 +194,9 @@ class QuestionCreationController: UIViewController {
     
     func saveCurrentQuestion() {
         if (currQuestionIndex >= questionTitlesData.count) {
-            questionTitlesData.append(questionLabel.text ?? "")
+            questionTitlesData.append(questionTitleField.text ?? "")
         } else {
-            questionTitlesData[currQuestionIndex] = questionLabel.text ?? ""
+            questionTitlesData[currQuestionIndex] = questionTitleField.text ?? ""
         }
         for i in 0..<4 {
             answersData[currQuestionIndex][i] = answerFields[i].text ?? ""
@@ -227,6 +227,7 @@ class QuestionCreationController: UIViewController {
     @objc func handleSubmit() {
         saveCurrentQuestion()
         QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func handleConfigureBucket(button: UIButton) {

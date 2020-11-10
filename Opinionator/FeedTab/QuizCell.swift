@@ -23,19 +23,21 @@ class QuizCell: UICollectionViewCell {
     
     weak var delegate: QuizCellDelegate?
     
-    private lazy var questionTitleLabel: UILabel = {
+    private lazy var quizTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.text = quiz?.title
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var creatorUsernameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .lightGray
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.text = quiz?.creator.username
+        label.textColor = .darkGray
+        label.font = UIFont.systemFont(ofSize: 25)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -52,13 +54,17 @@ class QuizCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .white
-        let creatorInfoStack = UIStackView(arrangedSubviews: [creatorUsernameLabel, profileImageView])
+        backgroundColor = .gray
+        let creatorInfoStack = UIStackView(arrangedSubviews: [profileImageView, creatorUsernameLabel])
         creatorInfoStack.distribution = .fillProportionally
-        creatorInfoStack.spacing = 12
+        creatorInfoStack.spacing = 10
         creatorInfoStack.axis = .horizontal
+        
         contentView.addSubview(creatorInfoStack)
+        creatorInfoStack.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 5)
+        
+        contentView.addSubview(quizTitleLabel)
+        quizTitleLabel.anchor(top: creatorInfoStack.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 12, paddingLeft: 12)
     }
     
     required init?(coder: NSCoder) {
@@ -67,9 +73,21 @@ class QuizCell: UICollectionViewCell {
     
     func configure() {
         guard let quiz = quiz else { return }
+
+        
+//        var testLabel = UILabel()
+//        testLabel.text = "Test"
+//        testLabel.font = UIFont.systemFont(ofSize: 40)
+//        testLabel.backgroundColor = .black
+//
+//
+//        contentView.addSubview(testLabel)
         let viewModel = QuizCellViewModel(quiz: quiz)
         //profileImageView.sd_setImage(with: viewModel.profileImageURL, completed: nil)
         profileImageView.image = #imageLiteral(resourceName: "icons8-user-96")
+        print("DEBUG: \(quiz.title)")
+        creatorUsernameLabel.text = quiz.creator.username
+        quizTitleLabel.text = quiz.title
     }
     
     @objc func handleGoToUserProfile() {

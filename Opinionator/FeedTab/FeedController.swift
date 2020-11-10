@@ -84,12 +84,17 @@ extension FeedController {
         cell.quiz = quizzes[indexPath.row]
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = QuizInfoController(quiz: quizzes[indexPath.row])
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension FeedController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 400, height: 400)
+        return CGSize(width: 400, height: 200)
     }
     
 }

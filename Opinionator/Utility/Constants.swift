@@ -20,3 +20,10 @@ let REF_USER_FOLLOWINGS = DB_REF.child("user-followings")
 let REF_USER_USERNAMES = DB_REF.child("user-usernames")
 
 let REF_QUIZ = DB_REF.child("quizzes")
+
+func getTopSafeAreaHeight() -> CGFloat {
+    let window = UIApplication.shared.windows[0]
+    let safeFrame = window.safeAreaLayoutGuide.layoutFrame
+    var topSafeAreaHeight = safeFrame.minY
+    return topSafeAreaHeight
+}

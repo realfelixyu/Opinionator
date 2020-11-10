@@ -22,10 +22,10 @@ struct QuizModel {
         self.quizID = quizID
         self.creator = creator
         
-        self.title = dictionary["quizName"] as? String ?? ""
-        self.questions = dictionary["questions"] as? [String] ?? []
-        self.answers = dictionary["answers"] as? [[String]] ?? []
-        self.buckets = dictionary["buckets"] as? [[[String]]] ?? []
+        self.title = dictionary["quizTitle"] as? String ?? ""
+        self.questions = dictionary["questionTitles"] as? [String] ?? []
+        self.answers = dictionary["answerTitles"] as? [[String]] ?? []
+        self.buckets = dictionary["bucketData"] as? [[[String]]] ?? []
         self.bucketNames = dictionary["bucketNames"] as? [String] ?? []
         
         if let timestamp = dictionary["timestamp"] as? Double {
