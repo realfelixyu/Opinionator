@@ -115,7 +115,10 @@ static NSAttributedString *UppercaseAttributedString(NSAttributedString *string)
   CGFloat _inkMaxRippleRadius;
 }
 @property(nonatomic, strong, readonly, nonnull) MDCStatefulRippleView *rippleView;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @property(nonatomic, strong) MDCInkView *inkView;
+#pragma clang diagnostic pop
 @property(nonatomic, readonly, strong) MDCShapedShadowLayer *layer;
 @property(nonatomic, assign) BOOL accessibilityTraitsIncludesButton;
 @property(nonatomic, assign) BOOL enableTitleFontForState;
@@ -211,7 +214,10 @@ static NSAttributedString *UppercaseAttributedString(NSAttributedString *string)
   _shadowColors[@(UIControlStateNormal)] = [UIColor colorWithCGColor:self.layer.shadowColor];
 
   // Set up ink layer.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   _inkView = [[MDCInkView alloc] initWithFrame:self.bounds];
+#pragma clang diagnostic pop
   _inkView.usesLegacyInkRipple = NO;
   [self insertSubview:_inkView belowSubview:self.imageView];
   // UIButton has a drag enter/exit boundary that is outside of the frame of the button itself.
@@ -379,6 +385,20 @@ static NSAttributedString *UppercaseAttributedString(NSAttributedString *string)
 - (CGSize)sizeThatFits:(CGSize)size {
   CGSize givenSizeWithInsets = CGSizeShrinkWithInsets(size, _visibleAreaInsets);
   CGSize superSize = [super sizeThatFits:givenSizeWithInsets];
+
+  // TODO(b/171816831): revisit this in a future iOS version to verify reproducibility.
+  // Because of a UIKit bug in iOS 13 and 14 (current), buttons that have both an image and text
+  // will not return an appropriately large size from [super sizeThatFits:]. In this case, we need
+  // to expand the width. The number 1 was chosen somewhat arbitrarily, but based on some spot
+  // testing, adding the smallest amount of extra width possible seems to fix the issue.
+#if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
+  if (@available(iOS 13.0, *)) {
+    if (UIAccessibilityIsBoldTextEnabled() && [self imageForState:UIControlStateNormal] &&
+        [self titleForState:UIControlStateNormal]) {
+      superSize.width += 1;
+    }
+  }
+#endif
 
   if (self.minimumSize.height > 0) {
     superSize.height = MAX(self.minimumSize.height, superSize.height);
@@ -1068,7 +1088,7 @@ static NSAttributedString *UppercaseAttributedString(NSAttributedString *string)
 - (void)updateInkForShape {
   CGRect boundingBox = CGPathGetBoundingBox(self.layer.shapeLayer.path);
   self.inkView.maxRippleRadius =
-      (CGFloat)(MDCHypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10);
+      (CGFloat)(hypot(CGRectGetHeight(boundingBox), CGRectGetWidth(boundingBox)) / 2 + 10);
   self.inkView.layer.masksToBounds = NO;
   self.rippleView.layer.masksToBounds = NO;
 }
@@ -1186,9 +1206,9 @@ static NSAttributedString *UppercaseAttributedString(NSAttributedString *string)
     CGFloat additionalRequiredHeight =
         MAX(0, CGRectGetHeight(self.bounds) - visibleAreaSize.height);
     CGFloat additionalRequiredWidth = MAX(0, CGRectGetWidth(self.bounds) - visibleAreaSize.width);
-    visibleAreaInsets.top = MDCCeil(additionalRequiredHeight * 0.5f);
+    visibleAreaInsets.top = ceil(additionalRequiredHeight * 0.5f);
     visibleAreaInsets.bottom = additionalRequiredHeight - visibleAreaInsets.top;
-    visibleAreaInsets.left = MDCCeil(additionalRequiredWidth * 0.5f);
+    visibleAreaInsets.left = ceil(additionalRequiredWidth * 0.5f);
     visibleAreaInsets.right = additionalRequiredWidth - visibleAreaInsets.left;
   }
 

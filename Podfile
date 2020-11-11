@@ -6,9 +6,16 @@ target 'Opinionator' do
   use_frameworks!
 
   # Pods for Opinionator
-  pod 'SnapKit', '~> 5.0.0'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'MaterialComponents/TextFields'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'SDWebImage', '~> 5.0'
+  pod 'ActiveLabel'
+  pod 'LBTATools', '~> 1.0'
+  pod 'IQKeyboardManager'
 
 end
