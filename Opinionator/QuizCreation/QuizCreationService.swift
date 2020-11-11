@@ -18,7 +18,11 @@ struct QuizCreationService {
         var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames] as [String: Any]
         
         REF_QUIZ.childByAutoId().updateChildValues(values) { (err, ref) in
-            print("DEBUG: upload QUIZ success")
+            if err == nil {
+                guard let key = ref.key else {return}
+                REF_QUIZTITLES.updateChildValues([quizTitle: key])
+                print("DEBUG: upload QUIZ success")
+            }
         }
         
     }

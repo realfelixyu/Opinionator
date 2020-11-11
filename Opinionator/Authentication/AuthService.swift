@@ -36,8 +36,11 @@ struct AuthService {
             guard let uid = result?.user.uid else {return}
             
             let values = ["email": email, "username": username]
-            
-            REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
+            REF_USERS.child(uid).updateChildValues(values) { (err, ref) in
+                if err == nil {
+                    REF_USERNAMES.updateChildValues([username: uid], withCompletionBlock: completion)
+                }
+            }
         }
     }
 }
