@@ -13,6 +13,7 @@ class QuizController: UIViewController {
     
     var quiz: QuizModel
     var currQuestionIndex = 0
+    var bucketValues: [Float]
     
 //    private lazy var questionTitleLabel: UILabel = {
 //        let label = UILabel()
@@ -35,10 +36,11 @@ class QuizController: UIViewController {
     
     private let questionTextView = UITextView(frame: CGRect(x: 20, y: getTopSafeAreaHeight() + 70, width: UIScreen.main.bounds.width - 40, height: 200))
     
-    private var ansButtons = [[UIButton(), UIButton()], [UIButton(), UIButton()]]
+    private var answerButtons = [UIButton(type: .system), UIButton(type: .system), UIButton(type: .system), UIButton(type: .system)]
     
     init(quiz: QuizModel) {
         self.quiz = quiz
+        self.bucketValues = Array(repeating: 0.0, count: quiz.bucketNames.count)
         super.init(nibName: nil, bundle: nil)
         
 //        questionTitleView.text = quiz.questions[currQuestionIndex]
@@ -54,7 +56,7 @@ class QuizController: UIViewController {
         super.viewDidLoad()
         configureTextView()
         configureAnswerButtons()
-        configureAnswerButtonValues()
+        updateUIScreenValues()
     }
     
     func configureTextView() {
@@ -70,28 +72,62 @@ class QuizController: UIViewController {
     }
     
     func configureAnswerButtons() {
-        var counter = 0
-        for buttonList in ansButtons {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fillProportionally
-            for button in buttonList {
-                button.tag = counter
-                counter += 1
-                button.layer.borderColor = UIColor.twitterBlue.cgColor
-                button.layer.borderWidth = 1.25
-                button.setTitleColor(.twitterBlue, for: .normal)
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-                button.addTarget(self, action: #selector(handleAnswerButtonTapped), for: .touchUpInside)
+        for (index, button) in answerButtons.enumerated() {
+            button.tag = index
+            button.layer.borderColor = UIColor.systemGreen.cgColor
+            button.layer.borderWidth = 2
+            button.layer.cornerRadius = 20
+            button.backgroundColor = .white
+            button.setTitleColor(.black, for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            button.addTarget(self, action: #selector(handleAnswerButtonTapped), for: .touchUpInside)
+            button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+            view.addSubview(button)
+            if (index == 0) {
+                button.anchor(top: questionTextView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 30, paddingRight: 30)
+            } else {
+                button.anchor(top: answerButtons[index - 1].bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 30, paddingLeft: 30, paddingRight: 30)
             }
+        }
+        
+    }
+    
+    func updateUIScreenValues() {
+        questionTextView.text = quiz.questions[currQuestionIndex]
+        questionTextView.centerVertically()
+        print("DEBUG \(quiz.answers[currQuestionIndex])")
+        for (index, button) in answerButtons.enumerated() {
+            button.setTitle(quiz.answers[currQuestionIndex][index], for: .normal)
         }
     }
     
-    func configureAnswerButtonValues() {
-        
+    func updateBuckets(answerIndex: Int) {
+        for i in 0..<bucketValues.count {
+            bucketValues[i] += quiz.buckets[currQuestionIndex][answerIndex][i]
+        }
+        print("DEBUG: \(bucketValues)")
+    }
+    func obtainResult() -> String {
+        var max = Float.leastNormalMagnitude
+        var maxIndex = 0
+        for i in 0..<bucketValues.count {
+            if (bucketValues[i] > max) {
+                max = bucketValues[i]
+                maxIndex = i
+            }
+        }
+        return quiz.bucketNames[maxIndex]
     }
     
-    @objc func handleAnswerButtonTapped() {
-        
+    @objc func handleAnswerButtonTapped(button: UIButton) {
+        updateBuckets(answerIndex: button.tag)
+        currQuestionIndex += 1
+        if (currQuestionIndex >= quiz.questions.count) {
+            navigationController?.popViewController(animated: true)
+            let controller = QuizResultController(result: obtainResult())
+            navigationController?.pushViewController(controller, animated: true)
+        } else {
+            updateUIScreenValues()
+        }
     }
 }

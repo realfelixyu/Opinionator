@@ -39,6 +39,7 @@
 		E96CB37C25524B4800AD046B /* BucketConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */; };
 		E9A13244255902C5004A5C3A /* QuizInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A13243255902C5004A5C3A /* QuizInfoController.swift */; };
 		E9A13248255A798B004A5C3A /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A13247255A798B004A5C3A /* QuizController.swift */; };
+		E9A1324B255B533A004A5C3A /* QuizResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1324A255B533A004A5C3A /* QuizResultController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketConfigurationController.swift; sourceTree = "<group>"; };
 		E9A13243255902C5004A5C3A /* QuizInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoController.swift; sourceTree = "<group>"; };
 		E9A13247255A798B004A5C3A /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
+		E9A1324A255B533A004A5C3A /* QuizResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 			children = (
 				E9A13243255902C5004A5C3A /* QuizInfoController.swift */,
 				E9A13247255A798B004A5C3A /* QuizController.swift */,
+				E9A1324A255B533A004A5C3A /* QuizResultController.swift */,
 			);
 			path = QuizTaking;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				E95A612F253E47DC000C3165 /* RegistrationController.swift in Sources */,
 				E96CB372255227B100AD046B /* QuestionCreationController.swift in Sources */,
 				E95A6137253E53B7000C3165 /* FeedController.swift in Sources */,
+				E9A1324B255B533A004A5C3A /* QuizResultController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
