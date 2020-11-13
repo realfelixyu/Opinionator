@@ -17,6 +17,7 @@ struct QuizModel {
     var answers: [[String]]
     var buckets: [[[Float]]]
     var bucketNames: [String]
+    var bucketImageURLs: [Int: URL]
     
     init(creator: User, quizID: String, dictionary: [String: Any]) {
         self.quizID = quizID
@@ -27,7 +28,7 @@ struct QuizModel {
         self.answers = dictionary["answerTitles"] as? [[String]] ?? []
         self.buckets = dictionary["bucketData"] as? [[[Float]]] ?? []
         self.bucketNames = dictionary["bucketNames"] as? [String] ?? []
-        
+        self.bucketImageURLs = dictionary["imageURLs"] as? [Int: URL] ?? [:]
         if let timestamp = dictionary["timestamp"] as? Double {
             self.timestamp = Date(timeIntervalSince1970: timestamp)
         }

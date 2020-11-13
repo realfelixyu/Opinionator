@@ -12,19 +12,35 @@ import Firebase
 struct QuizCreationService {
     static let shared = QuizCreationService()
     
-    func uploadNewQuiz(quizTitle: String, questionTitles: [String], answerTitles: [[String]], bucketData: [[[Float]]], bucketNames: [String]) {
+    func uploadNewQuiz(quizTitle: String, questionTitles: [String], answerTitles: [[String]], bucketData: [[[Float]]], bucketNames: [String], imagesMap: [Int: UIImage]) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
         var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames] as [String: Any]
-        
-        REF_QUIZ.childByAutoId().updateChildValues(values) { (err, ref) in
-            if err == nil {
-                guard let key = ref.key else {return}
-                REF_QUIZTITLES.updateChildValues([quizTitle: key])
-                print("DEBUG: upload QUIZ success")
+        uploadQuizImages(imagesMap: imagesMap) { (imagesURLMap) in
+            REF_QUIZ.childByAutoId().updateChildValues(values) { (err, ref) in
+                if err == nil {
+                    guard let key = ref.key else {return}
+                    REF_QUIZTITLES.updateChildValues([quizTitle: key])
+                    print("DEBUG: upload QUIZ success")
+                }
             }
         }
-        
+    }
+    
+    func uploadQuizImages(imagesMap: [Int: UIImage], completion: @escaping([Int: URL]) -> Void) {
+        var imagesURLMap = [Int: URL]()
+        for (index, image) in imagesMap {
+            guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
+            
+            let filename = NSUUID().uuidString
+            let ref = STORAGE_PROFILE_IMAGES.child(filename)
+            ref.putData(imageData, metadata: nil) { (meta, err) in
+                ref.downloadURL { (url, err) in
+                    imagesURLMap[index] = url
+                }
+            }
+        }
+        completion(imagesURLMap)
     }
     
 //    func fetchQuiz(userID: String, completion: @escpaing(Tweet) -> Void) {

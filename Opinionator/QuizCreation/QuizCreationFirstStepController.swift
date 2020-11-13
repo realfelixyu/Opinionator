@@ -50,33 +50,26 @@ class QuizCreationFirstStepController: LBTAFormController {
         let button = UIButton(type: .system)
         button.setTitle("Add Bucket", for: .normal)
         button.layer.borderColor = UIColor.twitterBlue.cgColor
-        button.layer.borderWidth = 1.25
+        button.layer.borderWidth = 2
         button.setTitleColor(.twitterBlue, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.layer.cornerRadius = 20
+        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         button.addTarget(self, action: #selector(handleAddBucket), for: .touchUpInside)
         return button
     }()
     
-//    var removeBucketButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Remove Bucket", for: .normal)
-//        button.layer.borderColor = UIColor.twitterBlue.cgColor
-//        button.layer.borderWidth = 1.25
-//        button.setTitleColor(.twitterBlue, for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-//        button.addTarget(self, action: #selector(handleRemoveBucket), for: .touchUpInside)
-//        return button
-//    }()
-    
     var continueButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Continue", for: .normal)
-            button.layer.borderColor = UIColor.twitterBlue.cgColor
-            button.layer.borderWidth = 1.25
-            button.setTitleColor(.twitterBlue, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            button.addTarget(self, action: #selector(handleContinue), for: .touchUpInside)
-            return button
+        let button = UIButton(type: .system)
+        button.setTitle("Continue", for: .normal)
+        button.layer.borderColor = UIColor.twitterBlue.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 20
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        button.addTarget(self, action: #selector(handleContinue), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -133,7 +126,7 @@ class QuizCreationFirstStepController: LBTAFormController {
                 }
             }
         }
-        let controller = QuestionCreationController(quizName: quizNameField.text ?? "No quiz name", bucketNames: bucketNames)
+        let controller = BucketImageSelectionController(quizName: quizNameField.text ?? "No quiz name", bucketNames: bucketNames)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

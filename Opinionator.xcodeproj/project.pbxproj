@@ -10,6 +10,7 @@
 		A14878A5C098AE3EC84541C8 /* Pods_Opinionator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3133852CDA9FF2DB13C006 /* Pods_Opinionator.framework */; };
 		E90626DD2504649F00DDA4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */; };
 		E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DB3E7251437F80046A42C /* AuthUtilities.swift */; };
+		E934615E255E4B8A008BAE84 /* BucketImageSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E934615D255E4B8A008BAE84 /* BucketImageSelectionController.swift */; };
 		E9586713255614EE000A574E /* QuizCreationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9586712255614EE000A574E /* QuizCreationService.swift */; };
 		E958671E25562BCA000A574E /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958671D25562BCA000A574E /* QuizCell.swift */; };
 		E958672125562FED000A574E /* QuizCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958672025562FED000A574E /* QuizCellViewModel.swift */; };
@@ -50,6 +51,7 @@
 		D0FFB856A8845641628C0C3C /* Pods-Opinionator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Opinionator.release.xcconfig"; path = "Target Support Files/Pods-Opinionator/Pods-Opinionator.release.xcconfig"; sourceTree = "<group>"; };
 		E90626DC2504649F00DDA4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E90DB3E7251437F80046A42C /* AuthUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUtilities.swift; sourceTree = "<group>"; };
+		E934615D255E4B8A008BAE84 /* BucketImageSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketImageSelectionController.swift; sourceTree = "<group>"; };
 		E9586712255614EE000A574E /* QuizCreationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCreationService.swift; sourceTree = "<group>"; };
 		E958671D25562BCA000A574E /* QuizCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
 		E958672025562FED000A574E /* QuizCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCellViewModel.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				E95A61A9253E6261000C3165 /* CreationTabController.swift */,
 				E96CB33D25520F2A00AD046B /* QuizCreationFirstStepController.swift */,
+				E934615D255E4B8A008BAE84 /* BucketImageSelectionController.swift */,
 				E96CB371255227B100AD046B /* QuestionCreationController.swift */,
 				E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */,
 				E9586712255614EE000A574E /* QuizCreationService.swift */,
@@ -391,6 +394,7 @@
 				E95A6122253E442D000C3165 /* AuthService.swift in Sources */,
 				E95A612C253E475D000C3165 /* CustomViews.swift in Sources */,
 				E95A619A253E615B000C3165 /* ProfileTabController.swift in Sources */,
+				E934615E255E4B8A008BAE84 /* BucketImageSelectionController.swift in Sources */,
 				E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */,
 				E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */,
 				E9A13251255B90A1004A5C3A /* QuizSearchController.swift in Sources */,

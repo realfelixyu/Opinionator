@@ -104,7 +104,7 @@ class QuestionCreationController: UIViewController {
             return button
     }()
     
-    init(quizName: String, bucketNames: [String]) {
+    init(quizName: String, bucketNames: [String], imagesMap: [Int: UIImage]) {
         self.quizName = quizName
         self.bucketNames = bucketNames
         //wtf why do we have to call super.init after setting quizName?
@@ -226,7 +226,7 @@ class QuestionCreationController: UIViewController {
     
     @objc func handleSubmit() {
         saveCurrentQuestion()
-        QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames)
+        QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames, imagesMap: [:])
         navigationController?.popViewController(animated: true)
     }
     
