@@ -28,10 +28,13 @@ struct QuizModel {
         self.answers = dictionary["answerTitles"] as? [[String]] ?? []
         self.buckets = dictionary["bucketData"] as? [[[Float]]] ?? []
         self.bucketNames = dictionary["bucketNames"] as? [String] ?? []
-        self.bucketImageURLs = dictionary["imageURLs"] as? [Int: URL] ?? [:]
+        let map = dictionary["imageURLs"] as? [Int: String] ?? [:]
+        self.bucketImageURLs = [Int: URL]()
+        for (index, str) in map {
+            self.bucketImageURLs[index] = URL(string: str)
+        }
         if let timestamp = dictionary["timestamp"] as? Double {
             self.timestamp = Date(timeIntervalSince1970: timestamp)
         }
-        
     }
 }

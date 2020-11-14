@@ -16,7 +16,8 @@ struct QuizCreationService {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
         var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames] as [String: Any]
-        uploadQuizImages(imagesMap: imagesMap) { (imagesURLMap) in
+        uploadQuizImages(imagesMap: imagesMap) { (imagesURLStringMap) in
+            values["imageURLs"] = imagesURLStringMap
             REF_QUIZ.childByAutoId().updateChildValues(values) { (err, ref) in
                 if err == nil {
                     guard let key = ref.key else {return}
@@ -27,20 +28,27 @@ struct QuizCreationService {
         }
     }
     
-    func uploadQuizImages(imagesMap: [Int: UIImage], completion: @escaping([Int: URL]) -> Void) {
-        var imagesURLMap = [Int: URL]()
+    func uploadQuizImages(imagesMap: [Int: UIImage], completion: @escaping([Int: String]) -> Void) {
+        var imagesURLMap = [Int: String]()
+        let group = DispatchGroup()
         for (index, image) in imagesMap {
             guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
             
             let filename = NSUUID().uuidString
             let ref = STORAGE_PROFILE_IMAGES.child(filename)
+            //intended to finish all uploading of images before calling completion
+            group.enter()
             ref.putData(imageData, metadata: nil) { (meta, err) in
                 ref.downloadURL { (url, err) in
-                    imagesURLMap[index] = url
+                    guard let urlString = url?.absoluteString else {return}
+                    imagesURLMap[index] = urlString
+                    group.leave()
                 }
             }
         }
-        completion(imagesURLMap)
+        group.notify(queue: .main) {
+            completion(imagesURLMap)
+        }
     }
     
 //    func fetchQuiz(userID: String, completion: @escpaing(Tweet) -> Void) {

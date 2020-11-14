@@ -114,6 +114,9 @@ class BucketImageSelectionController: LBTAFormController {
     }
     
     @objc func nextButtonTapped() {
+        for button in bucketAddImageButtons {
+            imagesMap[button.tag] = button.currentImage
+        }
         let controller = QuestionCreationController(quizName: quizName, bucketNames: bucketNames, imagesMap: imagesMap)
         navigationController?.pushViewController(controller, animated: true)
     }
