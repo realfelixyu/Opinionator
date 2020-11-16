@@ -12,11 +12,23 @@ import UIKit
 class QuizResultController: UIViewController {
     
     var result: String
+    var resultIndex: Int
+    var quiz: QuizModel
+    
+    private lazy var resultImage: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleToFill
+        iv.clipsToBounds = true
+        iv.layer.cornerRadius = 20
+        return iv
+    }()
     
     private let resultTextView = UITextView(frame: CGRect(x: 20, y: getTopSafeAreaHeight() + 70, width: UIScreen.main.bounds.width - 40, height: 200))
     
-    init(result: String) {
+    init(result: String, resultIndex: Int, quiz: QuizModel) {
         self.result = result
+        self.quiz = quiz
+        self.resultIndex = resultIndex
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,7 +38,17 @@ class QuizResultController: UIViewController {
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.basicColors.teal
+        navigationItem.title = "Results"
+        resultImage.sd_setImage(with: quiz.bucketImageURLs[resultIndex], completed: nil)
         configureTextView()
+        configureImage()
+    }
+    
+    func configureImage() {
+        
+        view.addSubview(resultImage)
+        resultImage.anchor(top: resultTextView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
+        resultImage.withHeight(UIScreen.main.bounds.height / 3)
     }
     
     func configureTextView() {
@@ -40,4 +62,5 @@ class QuizResultController: UIViewController {
         resultTextView.centerVertically()
         view.addSubview(resultTextView)
     }
+    
 }

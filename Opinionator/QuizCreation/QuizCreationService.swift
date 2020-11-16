@@ -12,12 +12,12 @@ import Firebase
 struct QuizCreationService {
     static let shared = QuizCreationService()
     
-    func uploadNewQuiz(quizTitle: String, questionTitles: [String], answerTitles: [[String]], bucketData: [[[Float]]], bucketNames: [String], imagesMap: [Int: UIImage]) {
+    func uploadNewQuiz(quizTitle: String, questionTitles: [String], answerTitles: [[String]], bucketData: [[[Float]]], bucketNames: [String], bucketImages: [UIImage], bucketImageIndex: [Int]) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
-        var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames] as [String: Any]
-        uploadQuizImages(imagesMap: imagesMap) { (imagesURLStringMap) in
-            values["imageURLs"] = imagesURLStringMap
+        var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames, "bucketImageIndexs": bucketImageIndex] as [String: Any]
+        uploadQuizImages(images: bucketImages) { (imagesURLStrings) in
+            values["imageURLs"] = imagesURLStrings
             REF_QUIZ.childByAutoId().updateChildValues(values) { (err, ref) in
                 if err == nil {
                     guard let key = ref.key else {return}
@@ -28,26 +28,26 @@ struct QuizCreationService {
         }
     }
     
-    func uploadQuizImages(imagesMap: [Int: UIImage], completion: @escaping([Int: String]) -> Void) {
-        var imagesURLMap = [Int: String]()
+    func uploadQuizImages(images: [UIImage], completion: @escaping([String]) -> Void) {
+        var imagesURLs = [String]()
         let group = DispatchGroup()
-        for (index, image) in imagesMap {
+        for (index, image) in images.enumerated() {
             guard let imageData = image.jpegData(compressionQuality: 0.3) else {return}
             
             let filename = NSUUID().uuidString
-            let ref = STORAGE_PROFILE_IMAGES.child(filename)
+            let ref = STORAGE_QUIZ_IMAGES.child(filename)
             //intended to finish all uploading of images before calling completion
             group.enter()
             ref.putData(imageData, metadata: nil) { (meta, err) in
                 ref.downloadURL { (url, err) in
                     guard let urlString = url?.absoluteString else {return}
-                    imagesURLMap[index] = urlString
+                    imagesURLs.append(urlString)
                     group.leave()
                 }
             }
         }
         group.notify(queue: .main) {
-            completion(imagesURLMap)
+            completion(imagesURLs)
         }
     }
     

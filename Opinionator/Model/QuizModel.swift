@@ -18,6 +18,7 @@ struct QuizModel {
     var buckets: [[[Float]]]
     var bucketNames: [String]
     var bucketImageURLs: [Int: URL]
+    var quizIconURL: URL?
     
     init(creator: User, quizID: String, dictionary: [String: Any]) {
         self.quizID = quizID
@@ -28,13 +29,15 @@ struct QuizModel {
         self.answers = dictionary["answerTitles"] as? [[String]] ?? []
         self.buckets = dictionary["bucketData"] as? [[[Float]]] ?? []
         self.bucketNames = dictionary["bucketNames"] as? [String] ?? []
-        let map = dictionary["imageURLs"] as? [Int: String] ?? [:]
+        var imageURLs = dictionary["imageURLs"] as? [String] ?? []
+        var imageURLIndexs = dictionary["bucketImageIndexs"] as? [Int] ?? []
         self.bucketImageURLs = [Int: URL]()
-        for (index, str) in map {
-            self.bucketImageURLs[index] = URL(string: str)
+        for (index, str) in imageURLs.enumerated() {
+            self.bucketImageURLs[imageURLIndexs[index]] = URL(string: str)
         }
         if let timestamp = dictionary["timestamp"] as? Double {
             self.timestamp = Date(timeIntervalSince1970: timestamp)
         }
+        self.quizIconURL = URL(string: dictionary["quizIconURL"] as? String ?? "")
     }
 }

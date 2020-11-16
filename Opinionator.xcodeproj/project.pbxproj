@@ -38,6 +38,7 @@
 		E96CB372255227B100AD046B /* QuestionCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB371255227B100AD046B /* QuestionCreationController.swift */; };
 		E96CB3752552294000AD046B /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB3742552294000AD046B /* QuizModel.swift */; };
 		E96CB37C25524B4800AD046B /* BucketConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */; };
+		E99D8A9625625AC3005EF33F /* AddQuizIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99D8A9525625AC3005EF33F /* AddQuizIconController.swift */; };
 		E9A13244255902C5004A5C3A /* QuizInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A13243255902C5004A5C3A /* QuizInfoController.swift */; };
 		E9A13248255A798B004A5C3A /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A13247255A798B004A5C3A /* QuizController.swift */; };
 		E9A1324B255B533A004A5C3A /* QuizResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1324A255B533A004A5C3A /* QuizResultController.swift */; };
@@ -81,6 +82,7 @@
 		E96CB371255227B100AD046B /* QuestionCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCreationController.swift; sourceTree = "<group>"; };
 		E96CB3742552294000AD046B /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketConfigurationController.swift; sourceTree = "<group>"; };
+		E99D8A9525625AC3005EF33F /* AddQuizIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuizIconController.swift; sourceTree = "<group>"; };
 		E9A13243255902C5004A5C3A /* QuizInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizInfoController.swift; sourceTree = "<group>"; };
 		E9A13247255A798B004A5C3A /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 		E9A1324A255B533A004A5C3A /* QuizResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				E95A61A9253E6261000C3165 /* CreationTabController.swift */,
 				E96CB33D25520F2A00AD046B /* QuizCreationFirstStepController.swift */,
 				E934615D255E4B8A008BAE84 /* BucketImageSelectionController.swift */,
+				E99D8A9525625AC3005EF33F /* AddQuizIconController.swift */,
 				E96CB371255227B100AD046B /* QuestionCreationController.swift */,
 				E96CB37B25524B4800AD046B /* BucketConfigurationController.swift */,
 				E9586712255614EE000A574E /* QuizCreationService.swift */,
@@ -395,6 +398,7 @@
 				E95A612C253E475D000C3165 /* CustomViews.swift in Sources */,
 				E95A619A253E615B000C3165 /* ProfileTabController.swift in Sources */,
 				E934615E255E4B8A008BAE84 /* BucketImageSelectionController.swift in Sources */,
+				E99D8A9625625AC3005EF33F /* AddQuizIconController.swift in Sources */,
 				E95C5EF724F1D129004D62FB /* UIColor+ThemeColors.swift in Sources */,
 				E90DB3E8251437F80046A42C /* AuthUtilities.swift in Sources */,
 				E9A13251255B90A1004A5C3A /* QuizSearchController.swift in Sources */,

@@ -74,6 +74,7 @@ class QuizCreationFirstStepController: LBTAFormController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Creation"
         //scrollView.alwaysBounceVertical = true
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 12

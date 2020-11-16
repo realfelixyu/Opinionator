@@ -22,7 +22,9 @@ class QuestionCreationController: UIViewController {
     var questionTitlesData = [String]()
     var answersData = [[String]]()
     var bucketsData = [[[Float]]]()
-    var imagesMap: [Int: UIImage]
+    var bucketImages: [UIImage]
+    var bucketImageIndexs: [Int]
+    var quizIcon: UIImage?
     
     var imageBanner: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "plumber.png"))
@@ -105,10 +107,12 @@ class QuestionCreationController: UIViewController {
             return button
     }()
     
-    init(quizName: String, bucketNames: [String], imagesMap: [Int: UIImage]) {
+    init(quizName: String, bucketNames: [String], bucketImages: [UIImage], bucketImageIndexs: [Int], quizIcon: UIImage?) {
         self.quizName = quizName
         self.bucketNames = bucketNames
-        self.imagesMap = imagesMap
+        self.bucketImages = bucketImages
+        self.bucketImageIndexs = bucketImageIndexs
+        self.quizIcon = quizIcon
         //wtf why do we have to call super.init after setting quizName?
         print("DEBUG: \(quizName)")
         print("DEBUG: \(bucketNames)")
@@ -228,7 +232,7 @@ class QuestionCreationController: UIViewController {
     
     @objc func handleSubmit() {
         saveCurrentQuestion()
-        QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames, imagesMap: imagesMap)
+        QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames, bucketImages: bucketImages, bucketImageIndex: bucketImageIndexs)
         navigationController?.popViewController(animated: true)
     }
     

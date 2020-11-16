@@ -107,7 +107,7 @@ class QuizController: UIViewController {
         }
         print("DEBUG: \(bucketValues)")
     }
-    func obtainResult() -> String {
+    func obtainResult() -> Int {
         var max = Float.leastNormalMagnitude
         var maxIndex = 0
         for i in 0..<bucketValues.count {
@@ -116,7 +116,7 @@ class QuizController: UIViewController {
                 maxIndex = i
             }
         }
-        return quiz.bucketNames[maxIndex]
+        return maxIndex
     }
     
     @objc func handleAnswerButtonTapped(button: UIButton) {
@@ -124,7 +124,8 @@ class QuizController: UIViewController {
         currQuestionIndex += 1
         if (currQuestionIndex >= quiz.questions.count) {
             navigationController?.popViewController(animated: true)
-            let controller = QuizResultController(result: obtainResult())
+            var index = obtainResult()
+            let controller = QuizResultController(result: quiz.bucketNames[index], resultIndex: index, quiz: quiz)
             navigationController?.pushViewController(controller, animated: true)
         } else {
             updateUIScreenValues()
