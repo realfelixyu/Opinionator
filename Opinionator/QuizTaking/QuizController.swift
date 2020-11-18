@@ -29,7 +29,7 @@ class QuizController: UIViewController {
     private lazy var questionTitleView: UITextView = {
         var tv = UITextView()
         tv.textColor = .black
-        tv.font = UIFont.systemFont(ofSize: 35)
+        tv.font = UIFont.boldSystemFont(ofSize: 35)
         tv.backgroundColor = .white
         return tv
     }()

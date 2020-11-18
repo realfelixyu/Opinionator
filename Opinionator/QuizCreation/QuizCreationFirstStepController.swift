@@ -9,6 +9,8 @@
 import LBTATools
 
 class QuizCreationFirstStepController: LBTAFormController {
+    let textFieldFontSize = 28
+    
     var imageBanner: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "plumber.png"))
         iv.contentMode = .scaleToFill
@@ -44,7 +46,7 @@ class QuizCreationFirstStepController: LBTAFormController {
         return label
     }()
     
-    var bucketFields = [UITextField(), UITextField(), UITextField(), UITextField()]
+    var bucketFields = [UITextField(), UITextField()]
     
     var addBucketButton: UIButton = {
         let button = UIButton(type: .system)
@@ -52,7 +54,7 @@ class QuizCreationFirstStepController: LBTAFormController {
         button.layer.borderColor = UIColor.twitterBlue.cgColor
         button.layer.borderWidth = 2
         button.setTitleColor(.twitterBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         button.layer.cornerRadius = 20
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         button.addTarget(self, action: #selector(handleAddBucket), for: .touchUpInside)
@@ -66,7 +68,7 @@ class QuizCreationFirstStepController: LBTAFormController {
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 20
         button.setTitleColor(.twitterBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         button.addTarget(self, action: #selector(handleContinue), for: .touchUpInside)
         return button
@@ -78,7 +80,7 @@ class QuizCreationFirstStepController: LBTAFormController {
         //scrollView.alwaysBounceVertical = true
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 12
-        formContainerStackView.layoutMargins = .init(top: 10, left: 24, bottom: 0, right: 24)
+        formContainerStackView.layoutMargins = .init(top: 30, left: 24, bottom: 0, right: 24)
         
         formContainerStackView.addArrangedSubview(imageBanner)
         formContainerStackView.addArrangedSubview(quizNameLabel)
@@ -95,19 +97,17 @@ class QuizCreationFirstStepController: LBTAFormController {
             formContainerStackView.addArrangedSubview(tf)
             tf.placeholder = "Enter bucket #\(index + 1)"
             tf.textColor = .black
-            tf.font = UIFont.systemFont(ofSize: 20)
+            tf.font = UIFont.systemFont(ofSize: CGFloat(textFieldFontSize))
             tf.borderStyle = .roundedRect
         }
     }
 //
     @objc func handleAddBucket() {
-        print("DEBUG: handle add bucket")
-        print("debug: \(bucketFields.count)")
         let tf = UITextField()
         bucketFields.append(tf)
         tf.placeholder = "Enter bucket #\(bucketFields.count)"
         tf.textColor = .black
-        tf.font = UIFont.systemFont(ofSize: 20)
+        tf.font = UIFont.systemFont(ofSize: CGFloat(textFieldFontSize))
         tf.borderStyle = .roundedRect
         //formContainerStackView.addArrangedSubview(tf)
         formContainerStackView.insertArrangedSubview(tf, at: formContainerStackView.subviews.count - 2)

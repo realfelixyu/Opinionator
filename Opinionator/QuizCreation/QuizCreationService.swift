@@ -12,10 +12,10 @@ import Firebase
 struct QuizCreationService {
     static let shared = QuizCreationService()
     
-    func uploadNewQuiz(quizTitle: String, questionTitles: [String], answerTitles: [[String]], bucketData: [[[Float]]], bucketNames: [String], bucketImages: [UIImage], bucketImageIndex: [Int]) {
+    func uploadNewQuiz(quizTitle: String, questionTitles: [String], answerTitles: [[String]], bucketData: [[[Float]]], bucketNames: [String], bucketImages: [UIImage], bucketImageIndex: [Int], timesTaken: Int, bucketDistribution: [Int], answerDistribution: [[Int]]) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
-        var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames, "bucketImageIndexs": bucketImageIndex] as [String: Any]
+        var values = ["uid": uid, "timestamp": Int(NSDate().timeIntervalSince1970), "quizTitle": quizTitle, "questionTitles": questionTitles, "answerTitles": answerTitles, "bucketData": bucketData, "bucketNames": bucketNames, "bucketImageIndexs": bucketImageIndex, "timesTaken": timesTaken, "bucketDistribution": bucketDistribution, "answerDistribution": answerDistribution] as [String: Any]
         uploadQuizImages(images: bucketImages) { (imagesURLStrings) in
             values["imageURLs"] = imagesURLStrings
             REF_QUIZ.childByAutoId().updateChildValues(values) { (err, ref) in

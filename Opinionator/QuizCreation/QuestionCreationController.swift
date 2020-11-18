@@ -75,36 +75,42 @@ class QuestionCreationController: UIViewController {
     }()
     
     var prevButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Previous Question", for: .normal)
-            button.layer.borderColor = UIColor.twitterBlue.cgColor
-            button.layer.borderWidth = 1.25
-            button.setTitleColor(.twitterBlue, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
-            button.addTarget(self, action: #selector(handlePreviousQuestion), for: .touchUpInside)
-            return button
+        let button = UIButton(type: .system)
+        button.setTitle("Previous Question", for: .normal)
+        button.layer.borderColor = UIColor.twitterBlue.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 20
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        button.addTarget(self, action: #selector(handlePreviousQuestion), for: .touchUpInside)
+        return button
     }()
     
     var nextButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Next Question", for: .normal)
-            button.layer.borderColor = UIColor.twitterBlue.cgColor
-            button.layer.borderWidth = 1.25
-            button.setTitleColor(.twitterBlue, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
-            button.addTarget(self, action: #selector(handleNextQuestion), for: .touchUpInside)
-            return button
+        let button = UIButton(type: .system)
+        button.setTitle("Next Question", for: .normal)
+        button.layer.borderColor = UIColor.twitterBlue.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 20
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        button.addTarget(self, action: #selector(handleNextQuestion), for: .touchUpInside)
+        return button
     }()
     
     var submitButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Finish", for: .normal)
-            button.layer.borderColor = UIColor.twitterBlue.cgColor
-            button.layer.borderWidth = 1.25
-            button.setTitleColor(.twitterBlue, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
-            button.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
-            return button
+        let button = UIButton(type: .system)
+        button.setTitle("Finish", for: .normal)
+        button.layer.borderColor = UIColor.twitterBlue.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 20
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        button.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        return button
     }()
     
     init(quizName: String, bucketNames: [String], bucketImages: [UIImage], bucketImageIndexs: [Int], quizIcon: UIImage?) {
@@ -232,8 +238,14 @@ class QuestionCreationController: UIViewController {
     
     @objc func handleSubmit() {
         saveCurrentQuestion()
-        QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames, bucketImages: bucketImages, bucketImageIndex: bucketImageIndexs)
-        navigationController?.popViewController(animated: true)
+        var timesTaken = 0
+        var bucketDistribution = Array.init(repeating: 0, count: bucketNames.count)
+        var answerDistribution = [[Int]]()
+        for index in 0..<answersData.count {
+            answerDistribution.append(Array.init(repeating: 0, count: answersData[index].count))
+        }
+        QuizCreationService.shared.uploadNewQuiz(quizTitle: quizName, questionTitles: questionTitlesData, answerTitles: answersData, bucketData: bucketsData, bucketNames: bucketNames, bucketImages: bucketImages, bucketImageIndex: bucketImageIndexs, timesTaken: timesTaken, bucketDistribution: bucketDistribution, answerDistribution: answerDistribution)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func handleConfigureBucket(button: UIButton) {

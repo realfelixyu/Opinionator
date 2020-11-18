@@ -44,9 +44,11 @@ class QuizInfoController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Take Quiz", for: .normal)
         button.layer.borderColor = UIColor.twitterBlue.cgColor
-        button.layer.borderWidth = 1.25
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 20
         button.setTitleColor(.twitterBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         button.addTarget(self, action: #selector(handleTakeQuiz), for: .touchUpInside)
         return button
     }()
@@ -71,7 +73,7 @@ class QuizInfoController: UIViewController {
     
     func configureHeader() {
         view.addSubview(quizTitleLabel)
-        quizTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 15)
+        quizTitleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, right: view.rightAnchor, paddingTop: 100, paddingLeft: 20)
         let creatorStack = UIStackView(arrangedSubviews: [byLabel, profileImageView])
         creatorStack.spacing = 12
         creatorStack.axis = .horizontal

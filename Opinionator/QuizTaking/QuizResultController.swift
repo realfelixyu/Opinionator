@@ -25,6 +25,14 @@ class QuizResultController: UIViewController {
     
     private let resultTextView = UITextView(frame: CGRect(x: 20, y: getTopSafeAreaHeight() + 70, width: UIScreen.main.bounds.width - 40, height: 200))
     
+    private let timesTakenLabel: UILabel = {
+        var label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.textAlignment = .center
+        return label
+    }()
+    
     init(result: String, resultIndex: Int, quiz: QuizModel) {
         self.result = result
         self.quiz = quiz
@@ -42,6 +50,7 @@ class QuizResultController: UIViewController {
         resultImage.sd_setImage(with: quiz.bucketImageURLs[resultIndex], completed: nil)
         configureTextView()
         configureImage()
+        configureFooter()
     }
     
     func configureImage() {
@@ -61,6 +70,12 @@ class QuizResultController: UIViewController {
         resultTextView.layer.cornerRadius = 20
         resultTextView.centerVertically()
         view.addSubview(resultTextView)
+    }
+    
+    func configureFooter() {
+        timesTakenLabel.text = "Times taken: \(quiz.timesTaken)"
+        view.addSubview(timesTakenLabel)
+        timesTakenLabel.anchor(top: resultImage.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
     }
     
 }
