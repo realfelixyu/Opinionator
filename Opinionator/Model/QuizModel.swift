@@ -9,7 +9,7 @@
 import Foundation
 
 struct QuizModel {
-    let quizID: String
+    var quizID: String
     let title: String
     var timestamp: Date!
     var creator: User
@@ -21,7 +21,7 @@ struct QuizModel {
     var quizIconURL: URL?
     var timesTaken: Int
     var bucketDistribution: [Int]
-    var questionDistribution: [[Int]]
+    var answerDistribution: [[Int]]
     
     init(creator: User, quizID: String, dictionary: [String: Any]) {
         self.quizID = quizID
@@ -44,6 +44,6 @@ struct QuizModel {
         self.quizIconURL = URL(string: dictionary["quizIconURL"] as? String ?? "")
         self.timesTaken = dictionary["timesTaken"] as? Int ?? 0
         self.bucketDistribution = dictionary["bucketDistribution"] as? [Int] ?? []
-        self.questionDistribution = dictionary[""] as? [[Int]] ?? [[]]
+        self.answerDistribution = dictionary["answerDistribution"] as? [[Int]] ?? [[]]
     }
 }

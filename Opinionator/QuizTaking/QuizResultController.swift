@@ -78,4 +78,9 @@ class QuizResultController: UIViewController {
         timesTakenLabel.anchor(top: resultImage.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
     }
     
+    func updateInfo() {
+        resultTextView.text = result
+        timesTakenLabel.text = "Times taken: \(quiz.timesTaken)"
+    }
+    
 }

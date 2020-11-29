@@ -135,38 +135,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F4DA398C-9D06-43F4-B37B-5F151450EFCD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinionator/QuizCreation/QuizCreationService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "uploadNewQuiz(quizTitle:questionTitles:answerTitles:bucketData:bucketNames:bucketImages:bucketImageIndex:timesTaken:bucketDistribution:answerDistribution:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "69882460-5FFB-491E-8E56-10F3C61E6FFD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Opinionator/QuizCreation/QuizCreationService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "uploadNewQuiz(quizTitle:questionTitles:answerTitles:bucketData:bucketNames:bucketImages:bucketImageIndex:timesTaken:bucketDistribution:answerDistribution:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C5606128-2A60-4F8D-A069-6D81EBC0FE6D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -190,8 +158,8 @@
             filePath = "Opinionator/QuizTaking/QuizController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "handleAnswerButtonTapped(button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -199,17 +167,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "69A810AF-3723-426E-9BDA-4B95A4E89BF3"
+            uuid = "701DD22F-24A1-49B1-9FD9-22BF227B01F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Opinionator/QuizCreation/QuizCreationFirstStepController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "continueButton"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9AE54BE0-96E5-4F76-91FC-09A47AE8FD7B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Opinionator/Model/QuizModel.swift"
+            filePath = "Opinionator/QuizCreation/QuizCreationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "init(creator:quizID:dictionary:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "uploadNewQuiz(quizTitle:questionTitles:answerTitles:bucketData:bucketNames:bucketImages:bucketImageIndex:timesTaken:bucketDistribution:answerDistribution:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9AE54BE0-96E5-4F76-91FC-09A47AE8FD7B - 3859bd3d6a9e9e22"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Opinionator.QuizCreationService.uploadNewQuiz(quizTitle: Swift.String, questionTitles: Swift.Array&lt;Swift.String&gt;, answerTitles: Swift.Array&lt;Swift.Array&lt;Swift.String&gt;&gt;, bucketData: Swift.Array&lt;Swift.Array&lt;Swift.Array&lt;Swift.Float&gt;&gt;&gt;, bucketNames: Swift.Array&lt;Swift.String&gt;, bucketImages: Swift.Array&lt;__C.UIImage&gt;, bucketImageIndex: Swift.Array&lt;Swift.Int&gt;, timesTaken: Swift.Int, bucketDistribution: Swift.Array&lt;Swift.Int&gt;, answerDistribution: Swift.Array&lt;Swift.Array&lt;Swift.Int&gt;&gt;) -&gt; ()"
+                  moduleName = "Opinionator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/felixyu/iOS%20Development/Opinionator/Opinionator/QuizCreation/QuizCreationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "976">
+               </Location>
+               <Location
+                  uuid = "9AE54BE0-96E5-4F76-91FC-09A47AE8FD7B - 7c3e282803373ffe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Swift.String&gt;) -&gt; () in Opinionator.QuizCreationService.uploadNewQuiz(quizTitle: Swift.String, questionTitles: Swift.Array&lt;Swift.String&gt;, answerTitles: Swift.Array&lt;Swift.Array&lt;Swift.String&gt;&gt;, bucketData: Swift.Array&lt;Swift.Array&lt;Swift.Array&lt;Swift.Float&gt;&gt;&gt;, bucketNames: Swift.Array&lt;Swift.String&gt;, bucketImages: Swift.Array&lt;__C.UIImage&gt;, bucketImageIndex: Swift.Array&lt;Swift.Int&gt;, timesTaken: Swift.Int, bucketDistribution: Swift.Array&lt;Swift.Int&gt;, answerDistribution: Swift.Array&lt;Swift.Array&lt;Swift.Int&gt;&gt;) -&gt; ()"
+                  moduleName = "Opinionator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/felixyu/iOS%20Development/Opinionator/Opinionator/QuizCreation/QuizCreationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

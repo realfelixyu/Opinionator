@@ -14,6 +14,7 @@ class QuizController: UIViewController {
     var quiz: QuizModel
     var currQuestionIndex = 0
     var bucketValues: [Float]
+    var answerChoices = [Int]()
     
 //    private lazy var questionTitleLabel: UILabel = {
 //        let label = UILabel()
@@ -105,8 +106,11 @@ class QuizController: UIViewController {
         for i in 0..<bucketValues.count {
             bucketValues[i] += quiz.buckets[currQuestionIndex][answerIndex][i]
         }
+        answerChoices.append(answerIndex)
         print("DEBUG: \(bucketValues)")
     }
+    
+    // Find the index of the bucket with the most points
     func obtainResult() -> Int {
         var max = Float.leastNormalMagnitude
         var maxIndex = 0
@@ -125,8 +129,23 @@ class QuizController: UIViewController {
         if (currQuestionIndex >= quiz.questions.count) {
             navigationController?.popViewController(animated: true)
             var index = obtainResult()
-            let controller = QuizResultController(result: quiz.bucketNames[index], resultIndex: index, quiz: quiz)
-            navigationController?.pushViewController(controller, animated: true)
+            let controller = QuizResultController(result: self.quiz.bucketNames[index], resultIndex: index, quiz: self.quiz)
+            QuizServices.shared.reFetchQuiz(quiz: quiz) { (newQuiz) in
+                print("DEBUG: in reFetchQuiz completion block")
+                self.quiz = newQuiz
+                self.quiz.bucketDistribution[index] += 1
+                self.quiz.timesTaken += 1
+                for (index, val) in self.answerChoices.enumerated() {
+                    self.quiz.answerDistribution[index][val] += 1
+                }
+                print("DEBUG: about to updateQuizStats")
+                QuizServices.shared.updateQuizStats(quiz: self.quiz) {
+                    controller.result = self.quiz.bucketNames[index]
+                    controller.quiz = self.quiz
+                    controller.updateInfo()
+                }
+            }
+            self.navigationController?.pushViewController(controller, animated: true)
         } else {
             updateUIScreenValues()
         }

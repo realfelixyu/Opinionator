@@ -92,6 +92,13 @@ class QuizCreationFirstStepController: LBTAFormController {
         formContainerStackView.addArrangedSubview(continueButton)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        quizNameField.text = ""
+        for field in bucketFields {
+            field.text = ""
+        }
+    }
+    
     func configureBucketFields() {
         for (index, tf) in bucketFields.enumerated() {
             formContainerStackView.addArrangedSubview(tf)

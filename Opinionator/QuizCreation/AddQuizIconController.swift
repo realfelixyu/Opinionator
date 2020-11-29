@@ -65,6 +65,7 @@ class AddQuizIconController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         view.backgroundColor = .white
         configureUI()
     }
@@ -93,8 +94,8 @@ class AddQuizIconController: UIViewController {
 extension AddQuizIconController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let profileImage = info[.editedImage] as? UIImage else { return }
-        addImageButton.setImage(profileImage, for: .normal)
+        guard let iconImage = info[.editedImage] as? UIImage else { return }
+        addImageButton.setImage(iconImage.withRenderingMode(.alwaysOriginal), for: .normal)
 //
 //        plusPhotoButton.layer.cornerRadius = 128/2
 //        plusPhotoButton.layer.masksToBounds = true
@@ -104,6 +105,7 @@ extension AddQuizIconController: UIImagePickerControllerDelegate, UINavigationCo
 //        plusPhotoButton.layer.borderWidth = 3
 //        self.plusPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
 //
+        print("DEBUG: should be calling dismiss")
         dismiss(animated: true, completion: nil)
     }
 }

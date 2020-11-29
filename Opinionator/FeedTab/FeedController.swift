@@ -65,6 +65,7 @@ class FeedController: UICollectionViewController {
     func fetchQuizzes() {
         QuizCreationService.shared.fetchQuizzes { (quizzes) in
             self.quizzes = quizzes
+            print("DEBUG: quizzes fetched")
         }
     }
     
